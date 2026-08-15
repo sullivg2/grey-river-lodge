@@ -45,9 +45,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         {/* Content Container */}
         <div className="max-w-4xl mx-auto space-y-6 z-10 py-24 relative">
           
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-[#D97746] font-semibold bg-[#D97746]/10 px-4 py-2 rounded-full border border-[#D97746]/20 backdrop-blur-sm animate-fadeIn">
+          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#D97746] font-semibold bg-[#D97746]/10 px-4 py-2 rounded-full border border-[#D97746]/20 backdrop-blur-sm animate-fadeIn">
             <Compass className="w-3.5 h-3.5 text-[#D97746]" />
-            <span>South Coast Newfoundland • Est. Wilderness Heritage</span>
+            <span>The Most Remote Salmon Lodge in Newfoundland • Helicopter Access Only</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-medium leading-[1.1] text-white tracking-tight">
@@ -56,7 +56,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           </h1>
 
           <p className="text-base sm:text-xl text-[#F5F2EB]/80 max-w-2xl mx-auto font-light leading-relaxed">
-            Accessible only by air and sea. Experience prime Atlantic salmon pools, authentic timber lodge comfort, and true maritime solitude on Newfoundland’s wildest river.
+            Accessible exclusively by helicopter. Experience Newfoundland's most remote Atlantic salmon pools, authentic timber lodge comfort, and true maritime solitude on the island's wildest river.
           </p>
 
           {/* CTAs */}
@@ -81,16 +81,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           {/* Metric Highlights Pill */}
           <div className="pt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto text-left border-t border-[#263B46]/60">
             <div>
-              <span className="text-xs text-[#F5F2EB]/60 block font-mono">River Access</span>
-              <span className="text-sm font-bold text-white">100% Roadless</span>
+              <span className="text-xs text-[#F5F2EB]/60 block font-mono">Access Type</span>
+              <span className="text-sm font-bold text-white">Helicopter Only</span>
             </div>
             <div>
               <span className="text-xs text-[#F5F2EB]/60 block font-mono">Weekly Rods</span>
               <span className="text-sm font-bold text-[#D97746]">Strictly Capped (8)</span>
             </div>
             <div>
-              <span className="text-xs text-[#F5F2EB]/60 block font-mono">Lodge Size</span>
-              <span className="text-sm font-bold text-white">3,250+ Sq. Ft.</span>
+              <span className="text-xs text-[#F5F2EB]/60 block font-mono">Location</span>
+              <span className="text-sm font-bold text-white">Most Remote in NL</span>
             </div>
             <div>
               <span className="text-xs text-[#F5F2EB]/60 block font-mono">Power & Comms</span>
@@ -342,7 +342,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       <section className="bg-[#2D4A3E] text-white py-20 text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 space-y-6 relative z-10">
           <span className="inline-block text-xs uppercase tracking-[0.25em] text-[#D97746] font-bold bg-[#11191F]/40 px-3.5 py-1.5 rounded-full border border-[#D97746]/30">
-            Roadless Newfoundland Outfitting
+            Newfoundland's Most Remote Salmon Lodge • Helicopter Access Only
           </span>
           <h2 className="text-3xl sm:text-5xl font-serif text-white">
             Secure Your Week on the River

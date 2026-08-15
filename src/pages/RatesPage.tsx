@@ -30,13 +30,13 @@ export const RatesPage: React.FC<RatesPageProps> = ({ onNavigate, onSelectBookin
         {/* Header */}
         <div className="text-center space-y-3">
           <span className="text-xs uppercase tracking-widest text-[#D97746] font-bold">
-            Transparent Pricing
+            Newfoundland's Most Remote Salmon Outfitter
           </span>
           <h1 className="text-4xl sm:text-6xl font-serif text-[#11191F]">
             Rates & Trip Inclusions
           </h1>
           <p className="text-slate-600 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
-            All packages are structured for 6-day / 7-night wilderness outfitting with dedicated guiding, private lodge quarters, and chef meal service.
+            All packages are structured for 6-day / 7-night wilderness outfitting with dedicated guiding, private lodge quarters, chef meal service, and helicopter coordination.
           </p>
         </div>
 
@@ -100,7 +100,7 @@ export const RatesPage: React.FC<RatesPageProps> = ({ onNavigate, onSelectBookin
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-slate-400 font-bold">•</span>
-                  <span>Floatplane / Helicopter charter transfer fees (arranged via lodge)</span>
+                  <span>Helicopter charter transfer fees (coordinated directly via lodge)</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-slate-400 font-bold">•</span>

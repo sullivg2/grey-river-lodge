@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { PageId } from '../types';
-import { Menu, X, Compass, PhoneCall, Waves, ShieldCheck, Download } from 'lucide-react';
+import { Menu, X, Compass, PhoneCall, Waves, ShieldCheck } from 'lucide-react';
 
 interface NavbarProps {
   currentPage: PageId;
   onNavigate: (page: PageId) => void;
-  onOpenNetlifyModal: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenNetlifyModal }) => {
+export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -45,23 +44,19 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenN
               2027 Season Dates Open
             </span>
             <span className="text-[#F5F2EB]/40">•</span>
+            <span className="text-white/80 font-medium">
+              Newfoundland’s Most Remote Salmon Lodge • Helicopter Access Only
+            </span>
+            <span className="text-[#F5F2EB]/40">•</span>
             <span className="flex items-center gap-1 text-[#F5F2EB]/70">
               <Waves className="w-3 h-3 text-[#3E6656]" />
-              Grey River System: Pristine Flow • 56°F Water Temp
+              Grey River System: Pristine Flow • 56°F
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <button 
-              onClick={onOpenNetlifyModal}
-              className="text-[#D97746] hover:text-[#C26334] flex items-center gap-1 cursor-pointer transition text-[11px] font-medium"
-            >
-              <Download className="w-3 h-3" />
-              Netlify Source & Astro Code
-            </button>
-            <span className="text-[#F5F2EB]/40">•</span>
             <a 
               href="mailto:info@greyriverlodge.com" 
-              className="hover:text-white transition flex items-center gap-1"
+              className="hover:text-white transition flex items-center gap-1 text-[#F5F2EB]/90"
             >
               <PhoneCall className="w-3 h-3 text-[#D97746]" />
               Direct Outfitter: info@greyriverlodge.com
@@ -92,8 +87,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenN
                   GREY RIVER
                 </span>
               </div>
-              <span className="text-[10px] tracking-[0.25em] text-[#D97746] uppercase font-medium pl-8">
-                Lodge • Newfoundland
+              <span className="text-[10px] tracking-[0.22em] text-[#D97746] uppercase font-medium pl-8">
+                Most Remote Salmon Lodge • Newfoundland
               </span>
             </button>
 
@@ -117,20 +112,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenN
             {/* Primary Action Buttons */}
             <div className="hidden lg:flex items-center gap-3">
               <button
-                onClick={onOpenNetlifyModal}
-                className="border border-[#263B46] hover:border-[#D97746]/50 text-[#F5F2EB]/80 hover:text-white text-xs font-semibold px-3.5 py-2.5 rounded transition cursor-pointer flex items-center gap-1.5"
-                title="View Astro & Netlify Code Structure"
-              >
-                <Download className="w-3.5 h-3.5 text-[#D97746]" />
-                <span>Astro / Netlify</span>
-              </button>
-
-              <button
                 onClick={() => handleNavClick('contact')}
                 className="bg-[#D97746] hover:bg-[#C26334] text-white text-xs font-semibold uppercase tracking-wider px-5 py-3 rounded shadow-md transition-all duration-200 cursor-pointer flex items-center gap-2"
               >
                 <ShieldCheck className="w-4 h-4" />
-                <span>Reserve Dates</span>
+                <span>Reserve 2027 Dates</span>
               </button>
             </div>
 
@@ -171,16 +157,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenN
               </button>
             ))}
             <div className="pt-4 border-t border-[#263B46] space-y-2">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenNetlifyModal();
-                }}
-                className="w-full bg-[#1B2A32] text-[#F5F2EB] text-xs font-medium py-3 rounded flex items-center justify-center gap-2"
-              >
-                <Download className="w-4 h-4 text-[#D97746]" />
-                View Netlify & Astro Source
-              </button>
               <button
                 onClick={() => handleNavClick('contact')}
                 className="w-full bg-[#D97746] hover:bg-[#C26334] text-white text-xs font-semibold uppercase tracking-wider py-3.5 rounded shadow text-center block"

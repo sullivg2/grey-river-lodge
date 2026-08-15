@@ -1,13 +1,12 @@
 import React from 'react';
 import { PageId } from '../types';
-import { Compass, Mail, MapPin, ShieldCheck, Waves, Fish, ArrowUpRight, Github, ExternalLink } from 'lucide-react';
+import { Compass, Mail, MapPin, ShieldCheck, Waves, Fish, PhoneCall } from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (page: PageId) => void;
-  onOpenNetlifyModal: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenNetlifyModal }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -38,8 +37,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenNetlifyModal }
               <Waves className="w-5 h-5" />
             </div>
             <div>
-              <p className="font-semibold text-white uppercase tracking-wider text-[11px]">Roadless Fjord Access</p>
-              <p className="text-[#F5F2EB]/60">Scenic helicopter transfer onto private lodge landing pad.</p>
+              <p className="font-semibold text-white uppercase tracking-wider text-[11px]">Helicopter Access Only</p>
+              <p className="text-[#F5F2EB]/60">Scenic helicopter transfer directly onto private lodge landing pad.</p>
             </div>
           </div>
         </div>
@@ -57,8 +56,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenNetlifyModal }
                 GREY RIVER LODGE
               </span>
             </div>
+            <p className="text-xs font-mono uppercase tracking-widest text-[#D97746] font-semibold">
+              The Most Remote Salmon Lodge in Newfoundland
+            </p>
             <p className="text-sm text-[#F5F2EB]/70 max-w-md leading-relaxed">
-              Remote Atlantic salmon and sea-run trout outfitting on the pristine, roadless south coast of Newfoundland. Accessible strictly by air and sea.
+              Wild Atlantic salmon and sea-run trout outfitting on the roadless, uninhabited south coast of Newfoundland. Accessible exclusively by helicopter.
             </p>
             <div className="pt-2 text-xs space-y-1.5 text-[#F5F2EB]/50">
               <p className="flex items-center gap-2">
@@ -81,27 +83,27 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenNetlifyModal }
             </h4>
             <ul className="space-y-2 text-sm text-[#F5F2EB]/70">
               <li>
-                <button onClick={() => onNavigate('the-fishery')} className="hover:text-white transition text-left">
+                <button onClick={() => onNavigate('the-fishery')} className="hover:text-white transition text-left cursor-pointer">
                   The River & Pools
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('the-fishery')} className="hover:text-white transition text-left">
+                <button onClick={() => onNavigate('the-fishery')} className="hover:text-white transition text-left cursor-pointer">
                   June Fresh Run
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('the-fishery')} className="hover:text-white transition text-left">
+                <button onClick={() => onNavigate('the-fishery')} className="hover:text-white transition text-left cursor-pointer">
                   July Dry Fly Peak
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('the-fishery')} className="hover:text-white transition text-left">
+                <button onClick={() => onNavigate('the-fishery')} className="hover:text-white transition text-left cursor-pointer">
                   August Sea Trout
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('the-fishery')} className="hover:text-white transition text-left">
+                <button onClick={() => onNavigate('the-fishery')} className="hover:text-white transition text-left cursor-pointer">
                   Tackle & Fly Guide
                 </button>
               </li>
@@ -115,71 +117,69 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenNetlifyModal }
             </h4>
             <ul className="space-y-2 text-sm text-[#F5F2EB]/70">
               <li>
-                <button onClick={() => onNavigate('accommodations')} className="hover:text-white transition text-left">
+                <button onClick={() => onNavigate('accommodations')} className="hover:text-white transition text-left cursor-pointer">
                   Main Timber Lodge
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('accommodations')} className="hover:text-white transition text-left">
+                <button onClick={() => onNavigate('accommodations')} className="hover:text-white transition text-left cursor-pointer">
                   Secondary Lodge
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('accommodations')} className="hover:text-white transition text-left">
+                <button onClick={() => onNavigate('accommodations')} className="hover:text-white transition text-left cursor-pointer">
                   Off-Grid Infrastructure
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('rates')} className="hover:text-white transition text-left">
+                <button onClick={() => onNavigate('rates')} className="hover:text-white transition text-left cursor-pointer">
                   2027 Season Rates
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('getting-here')} className="hover:text-white transition text-left">
-                  Helicopter Staging
+                <button onClick={() => onNavigate('getting-here')} className="hover:text-white transition text-left cursor-pointer">
+                  Helicopter Staging Base
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Netlify & Direct Outfitter CTA */}
+          {/* Direct Outfitter CTA */}
           <div className="space-y-4">
             <h4 className="text-xs uppercase tracking-widest text-[#D97746] font-semibold mb-2">
-              Netlify Ready
+              Reserve Your Week
             </h4>
             <p className="text-xs text-[#F5F2EB]/70 leading-relaxed">
-              Engineered with Astro & Netlify Forms ready for one-click static CDN deployment.
+              With our strict 8-rod weekly cap, prime Atlantic salmon dry fly weeks fill up quickly.
             </p>
             <button
-              onClick={onOpenNetlifyModal}
-              className="w-full bg-[#1B2A32] hover:bg-[#263B46] text-[#F5F2EB] text-xs font-semibold py-2.5 px-3 rounded border border-[#263B46] transition flex items-center justify-center gap-1.5 cursor-pointer"
-            >
-              <span>View Astro / Netlify Files</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#D97746]" />
-            </button>
-            <button
               onClick={() => onNavigate('contact')}
-              className="w-full bg-[#2D4A3E] hover:bg-[#3E6656] text-white text-xs font-semibold uppercase tracking-wider py-2.5 px-3 rounded transition flex items-center justify-center gap-1 cursor-pointer"
+              className="w-full bg-[#D97746] hover:bg-[#C26334] text-white text-xs font-semibold uppercase tracking-wider py-3 px-4 rounded shadow transition flex items-center justify-center gap-1.5 cursor-pointer"
             >
-              Inquire for Dates
+              <ShieldCheck className="w-4 h-4" />
+              <span>Inquire for Dates</span>
             </button>
+            <a
+              href="mailto:info@greyriverlodge.com"
+              className="w-full bg-[#1B2A32] hover:bg-[#263B46] text-[#F5F2EB] text-xs font-medium py-2.5 px-3 rounded border border-[#263B46] transition flex items-center justify-center gap-1.5 cursor-pointer"
+            >
+              <PhoneCall className="w-3.5 h-3.5 text-[#D97746]" />
+              <span>info@greyriverlodge.com</span>
+            </a>
           </div>
 
         </div>
 
         {/* Bottom bar */}
         <div className="mt-14 pt-8 border-t border-[#263B46]/80 flex flex-col sm:flex-row justify-between items-center text-xs text-[#F5F2EB]/40 gap-4">
-          <p>&copy; {currentYear} Grey River Lodge. All rights reserved. Newfoundland & Labrador, Canada.</p>
+          <p>&copy; {currentYear} Grey River Lodge. All rights reserved. South Coast, Newfoundland & Labrador, Canada.</p>
           <div className="flex items-center gap-4">
-            <button 
-              onClick={onOpenNetlifyModal} 
-              className="text-[#D97746] hover:underline"
-            >
-              Astro + Tailwind + Netlify Template
+            <button onClick={() => onNavigate('getting-here')} className="hover:text-white transition cursor-pointer">
+              Helicopter Access Only
             </button>
             <span>•</span>
-            <button onClick={() => onNavigate('contact')} className="hover:text-white transition">
-              Inquire
+            <button onClick={() => onNavigate('contact')} className="hover:text-white transition cursor-pointer">
+              Direct Inquiries
             </button>
           </div>
         </div>

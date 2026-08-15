@@ -8,12 +8,10 @@ import { AccommodationsPage } from './pages/AccommodationsPage';
 import { RatesPage } from './pages/RatesPage';
 import { GettingHerePage } from './pages/GettingHerePage';
 import { ContactPage } from './pages/ContactPage';
-import { NetlifyCodeExporterModal } from './components/NetlifyCodeExporterModal';
 import { AiGuideChat } from './components/AiGuideChat';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>('home');
-  const [isNetlifyModalOpen, setIsNetlifyModalOpen] = useState<boolean>(false);
   const [prefilledBooking, setPrefilledBooking] = useState<{
     partySize?: string;
     seasonWindow?: string;
@@ -58,7 +56,6 @@ export default function App() {
       <Navbar
         currentPage={currentPage}
         onNavigate={handleNavigate}
-        onOpenNetlifyModal={() => setIsNetlifyModalOpen(true)}
       />
 
       {/* Main Page View Content */}
@@ -79,17 +76,10 @@ export default function App() {
       {/* Footer */}
       <Footer
         onNavigate={handleNavigate}
-        onOpenNetlifyModal={() => setIsNetlifyModalOpen(true)}
       />
 
       {/* AI Outfitter Concierge */}
       <AiGuideChat />
-
-      {/* Netlify Code & Astro Project Files Exporter Modal */}
-      <NetlifyCodeExporterModal
-        isOpen={isNetlifyModalOpen}
-        onClose={() => setIsNetlifyModalOpen(false)}
-      />
 
     </div>
   );

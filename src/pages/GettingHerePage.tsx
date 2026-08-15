@@ -11,7 +11,8 @@ import {
   Sparkles, 
   CheckCircle2,
   Clock,
-  Luggage
+  Luggage,
+  ShieldCheck
 } from 'lucide-react';
 
 interface GettingHerePageProps {
@@ -25,18 +26,19 @@ export const GettingHerePage: React.FC<GettingHerePageProps> = ({ onNavigate }) 
         
         {/* Header */}
         <div className="space-y-4">
-          <span className="text-xs uppercase tracking-widest text-[#D97746] font-bold">
-            Transit Logistics
-          </span>
+          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#D97746] font-bold bg-[#D97746]/10 px-3 py-1 rounded-full border border-[#D97746]/20">
+            <Compass className="w-3.5 h-3.5" />
+            <span>Newfoundland's Most Remote Salmon Lodge • Helicopter Access Only</span>
+          </div>
           <h1 className="text-4xl sm:text-6xl font-serif text-[#11191F]">
             Journey to Grey River
           </h1>
           <p className="text-slate-700 text-sm sm:text-base leading-relaxed max-w-2xl">
-            Grey River is located on the rugged, roadless southern coast of Newfoundland. The arrival is an unforgettable part of the expedition experience.
+            As the most remote salmon lodge in Newfoundland, Grey River is completely roadless and accessible exclusively by helicopter. Arriving by air onto our private riverside helipad is one of the most thrilling chapters of your expedition.
           </p>
         </div>
 
-        {/* 3 Step Logistics Cards (Exact Prompt Requirement) */}
+        {/* 3 Step Logistics Cards */}
         <div className="space-y-6">
           
           {/* Step 1 */}
@@ -72,10 +74,10 @@ export const GettingHerePage: React.FC<GettingHerePageProps> = ({ onNavigate }) 
               </div>
             </div>
             <h3 className="text-xl font-serif font-bold text-slate-900">
-              Staging & Charter Transfer
+              Staging & Heli Base Transfer
             </h3>
             <p className="text-sm text-slate-600 leading-relaxed">
-              Our outfitter team coordinates ground transfer to our designated charter staging base on the south/west coast. Relax while we verify flight manifests and weigh bags.
+              Our outfitter team coordinates ground transfer to our designated helicopter staging base on the south/west coast. Relax while we verify flight manifests and weigh bags.
             </p>
             <div className="pt-2 text-xs text-slate-500 font-mono flex items-center gap-2">
               <Clock className="w-3.5 h-3.5 text-[#D97746]" />
@@ -94,29 +96,29 @@ export const GettingHerePage: React.FC<GettingHerePageProps> = ({ onNavigate }) 
               </div>
             </div>
             <h3 className="text-xl font-serif font-bold text-slate-900">
-              Helicopter / Floatplane Inbound
+              Direct Helicopter Inbound to Riverside Pad
             </h3>
             <p className="text-sm text-slate-600 leading-relaxed">
-              A spectacular 35-minute scenic flight over the Long Range Mountains and deep fjord canyons lands directly onto the private Grey River Lodge landing pad right beside the river.
+              A spectacular 35-minute scenic helicopter flight over the Long Range Mountains and deep fjord canyons lands directly onto the private Grey River Lodge helipad right beside the river.
             </p>
             <div className="pt-2 text-xs text-slate-500 font-mono flex items-center gap-2">
               <MapPin className="w-3.5 h-3.5 text-emerald-600" />
-              Arrival: Grey River Lodge Fjord Pad (47°35'N, 57°06'W)
+              Arrival: Grey River Lodge Fjord Helipad (47°35'N, 57°06'W) • Exclusive Heli Access
             </div>
           </div>
 
         </div>
 
-        {/* Luggage Notice (Prompt Requirement) */}
+        {/* Luggage Notice */}
         <div className="bg-[#11191F] text-white p-6 sm:p-8 rounded-xl shadow-lg border border-[#263B46] space-y-3">
           <div className="flex items-center gap-2.5">
             <Luggage className="w-5 h-5 text-[#D97746]" />
             <h4 className="text-sm font-bold text-[#D97746] uppercase tracking-wider">
-              Luggage & Weight Policy Notice
+              Helicopter Weight & Luggage Policy Notice
             </h4>
           </div>
           <p className="text-xs sm:text-sm text-[#F5F2EB]/80 leading-relaxed">
-            Due to strict aircraft payload requirements, all guest gear must be packed in <strong>soft-sided duffel bags</strong> (maximum 40–50 lbs per angler). Hard-sided rolling suitcases cannot fit into aircraft exterior cargo pods. Rod tubes may be up to 10 feet.
+            Due to strict helicopter payload regulations, all guest gear must be packed in <strong>soft-sided duffel bags</strong> (maximum 40–50 lbs per angler). Hard-sided rolling suitcases cannot fit into aircraft exterior cargo pods. Rod tubes may be up to 10 feet.
           </p>
         </div>
 
@@ -128,10 +130,10 @@ export const GettingHerePage: React.FC<GettingHerePageProps> = ({ onNavigate }) 
         {/* Bottom CTA */}
         <div className="bg-white p-8 rounded-xl border border-slate-200 text-center space-y-4 shadow-sm">
           <h3 className="text-xl font-serif font-bold text-slate-900">
-            Have Custom Charter or Group Transit Questions?
+            Have Custom Helicopter Charter or Group Transit Questions?
           </h3>
           <p className="text-xs text-slate-600 max-w-md mx-auto">
-            Our outfitter concierge coordinates group private jet arrivals, airport shuttles, and special cargo logistics directly.
+            Our outfitter concierge coordinates group private jet arrivals, airport shuttles, and special helicopter cargo logistics directly.
           </p>
           <button
             onClick={() => onNavigate('contact')}

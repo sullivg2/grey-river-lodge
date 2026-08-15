@@ -30,14 +30,15 @@ export const AccommodationsPage: React.FC<AccommodationsPageProps> = ({ onNaviga
         
         {/* Header */}
         <div className="space-y-4">
-          <span className="text-xs uppercase tracking-widest text-[#D97746] font-bold">
-            Wilderness Living
-          </span>
+          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#D97746] font-bold bg-[#D97746]/10 px-3 py-1 rounded-full border border-[#D97746]/20">
+            <Compass className="w-3.5 h-3.5" />
+            <span>Newfoundland's Most Remote Salmon Outpost • Helicopter Access Only</span>
+          </div>
           <h1 className="text-4xl sm:text-6xl font-serif text-[#11191F]">
             Lodge Accommodations
           </h1>
           <p className="text-lg text-slate-700 leading-relaxed max-w-3xl">
-            More than 3,250 square feet of handcrafted pine and timber facilities designed for relaxation, home-cooked dining, and complete comfort after long days on the water.
+            More than 3,250 square feet of handcrafted pine and timber facilities nestled in pure roadless isolation. Designed for relaxation, home-cooked dining, and complete comfort after long days on the river.
           </p>
         </div>
 

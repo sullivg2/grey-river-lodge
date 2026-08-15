@@ -212,6 +212,13 @@ export const SEASON_WINDOWS: SeasonWindowInfo[] = [
 
 export const TESTIMONIALS = [
   {
+    quote: "This is some of the most exciting fishing I have ever had in my life. Atlantic Salmon - the sport of kings",
+    author: "Bill Spicer",
+    location: "The New Fly Fisher",
+    year: "Host & Fly Fishing Legend",
+    rating: 5
+  },
+  {
     quote: "Landing a 16-pound Atlantic salmon on a dry fly in the Grey River canyon is an experience that stays with you forever. The solitude, the guides, and the hospitality are second to none.",
     author: "Richard V.",
     location: "Boston, MA",
@@ -219,17 +226,10 @@ export const TESTIMONIALS = [
     rating: 5
   },
   {
-    quote: "True wilderness outfitting done right. 200-amp power, gourmet hot dinners, and having miles of pristine river with zero road noise or outside anglers. Simply unmatched.",
+    quote: "True wilderness outfitting done right. As the most remote salmon lodge on Newfoundland, arriving by helicopter right onto the river pad sets a tone of pure isolation and incredible fishing.",
     author: "Mark & David T.",
     location: "Calgary, AB",
     year: "August 2025 Guest",
-    rating: 5
-  },
-  {
-    quote: "The helicopter arrival into the fjord sets the tone immediately. The guides know every rock and lie like the back of their hand. Hooked fish every single day.",
-    author: "Edward S.",
-    location: "London, UK",
-    year: "July 2024 Guest",
     rating: 5
   }
 ];
@@ -237,7 +237,11 @@ export const TESTIMONIALS = [
 export const FAQS = [
   {
     q: "How do we get to Grey River Lodge?",
-    a: "Commercial flight to Deer Lake (YDF) or St. John's (YYT), followed by our coordinated ground transfer to the south coast helicopter staging base. A breathtaking 35-minute scenic flight delivers you directly onto the lodge landing pad."
+    a: "Grey River Lodge is accessible exclusively by helicopter. Guests fly commercially into Deer Lake (YDF) or St. John's (YYT), followed by a brief ground transfer to our coastal staging base. A scenic 35-minute helicopter flight brings you directly onto our private riverside helipad."
+  },
+  {
+    q: "Why is Grey River Lodge known as the most remote salmon lodge in Newfoundland?",
+    a: "Located deep in the roadless southern fjord wilderness of Newfoundland with zero road, ferry, or trail access, Grey River is completely cut off from public pressure. Exclusive helicopter access guarantees unmatched tranquility and untouched Atlantic salmon holding pools."
   },
   {
     q: "What is the guide-to-angler ratio?",
@@ -253,6 +257,6 @@ export const FAQS = [
   },
   {
     q: "What is the luggage limit for the helicopter transfer?",
-    a: "Due to aircraft weight and payload requirements, luggage is strictly limited to 40–50 lbs per person packed in soft-sided duffel bags (no hard rolling suitcases allowed in aircraft pods)."
+    a: "Due to helicopter payload regulations, luggage is strictly limited to 40–50 lbs per person packed in soft-sided duffel bags (hard rolling suitcases cannot fit in aircraft exterior pods)."
   }
 ];

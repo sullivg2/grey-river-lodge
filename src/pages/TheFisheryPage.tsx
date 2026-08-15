@@ -28,14 +28,15 @@ export const TheFisheryPage: React.FC<TheFisheryPageProps> = ({ onNavigate }) =>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         <div className="space-y-4 mb-12">
-          <span className="text-xs uppercase tracking-widest text-[#D97746] font-bold">
-            Unpressured Water
-          </span>
+          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#D97746] font-bold bg-[#D97746]/10 px-3 py-1 rounded-full border border-[#D97746]/20">
+            <Compass className="w-3.5 h-3.5" />
+            <span>Newfoundland's Most Remote Salmon River • Helicopter Access Only</span>
+          </div>
           <h1 className="text-4xl sm:text-6xl font-serif text-[#11191F]">
             The Grey River Fishery
           </h1>
           <p className="text-lg text-slate-700 leading-relaxed max-w-3xl">
-            Carving its way through dramatic coastal fjords, the Grey River system offers cold, crystal-clear water with world-class sight fishing for hard-fighting wild Atlantic salmon and trophy sea-run brook trout.
+            Carving its way through dramatic coastal fjords on Newfoundland's roadless south coast, the Grey River system offers cold, crystal-clear water with world-class sight fishing for hard-fighting wild Atlantic salmon and trophy sea-run brook trout.
           </p>
         </div>
 
