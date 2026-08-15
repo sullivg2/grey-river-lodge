@@ -28,31 +28,49 @@ export const LodgeImage: React.FC<LodgeImageProps> = ({
   const categoryFallback = DEFAULT_FALLBACKS[category] || DEFAULT_FALLBACKS.default;
   const ultimateFallback = fallbackUrl || categoryFallback;
 
-  // Build list of candidate paths to resolve local files in public/ or external URLs
-  const getCandidateList = () => {
+  // Build an exhaustive candidate list for cross-platform / Netlify / Vite asset serving
+  const getCandidateList = (): string[] => {
     if (directSrc) return [directSrc, ultimateFallback];
     if (!filename) return [ultimateFallback];
 
-    // If filename is already a full URL
+    // If filename is already a full remote URL
     if (filename.startsWith('http://') || filename.startsWith('https://')) {
       return [filename, ultimateFallback];
     }
 
-    // Try standard public directory paths
-    const cleanFilename = filename.replace(/^\/+/, '');
-    return [
-      `/${cleanFilename}`,
-      `/images/${cleanFilename}`,
-      `/assets/${cleanFilename}`,
-      `./${cleanFilename}`,
+    const clean = filename.replace(/^\/+/, '');
+    const cleanLower = clean.toLowerCase();
+    const cleanJpg = clean.replace(/\.JPG$/i, '.jpg').replace(/\.JPEG$/i, '.jpeg');
+    const cleanJPG = clean.replace(/\.jpg$/i, '.JPG').replace(/\.jpeg$/i, '.JPG');
+    const cleanJpeg = clean.replace(/\.jpg$/i, '.jpeg').replace(/\.JPG$/i, '.jpeg');
+
+    const rawCandidates = [
+      // Standard root public folder paths
+      `/${clean}`,
+      `/${cleanLower}`,
+      `/${cleanJpg}`,
+      `/${cleanJPG}`,
+      `/${cleanJpeg}`,
+      // Subfolder public paths
+      `/images/${clean}`,
+      `/images/${cleanLower}`,
+      `/assets/${clean}`,
+      `/assets/${cleanLower}`,
+      // Relative paths
+      `./${clean}`,
+      `./${cleanLower}`,
+      // Ultimate category fallback
       ultimateFallback
     ];
+
+    // Deduplicate candidate URLs while preserving order
+    return Array.from(new Set(rawCandidates));
   };
 
   const candidateUrls = getCandidateList();
   const [srcIndex, setSrcIndex] = useState(0);
 
-  // Reset index if filename or src prop changes
+  // Reset index whenever filename or directSrc changes
   useEffect(() => {
     setSrcIndex(0);
   }, [filename, directSrc, fallbackUrl]);
