@@ -50,6 +50,7 @@ export const AccommodationsPage: React.FC<AccommodationsPageProps> = ({ onNaviga
             <div className="h-56 bg-[#1B2A32] relative overflow-hidden flex items-end">
               <LodgeImage 
                 filename="9c19e13a-dc5e-4fb2-b418-46dd08758383.JPG"
+                category="Lodge & Grounds"
                 alt="Grey River Main Lodge and Helipad"
                 className="absolute inset-0 w-full h-full object-cover"
               />
@@ -121,6 +122,7 @@ export const AccommodationsPage: React.FC<AccommodationsPageProps> = ({ onNaviga
             <div className="h-56 bg-[#2D4A3E] relative overflow-hidden flex items-end">
               <LodgeImage 
                 filename="5e93c486-9c74-495a-9a28-c445f6057ecb.JPG"
+                category="Lodge & Grounds"
                 alt="Grey River Lodge Porch and River Vista"
                 className="absolute inset-0 w-full h-full object-cover"
               />

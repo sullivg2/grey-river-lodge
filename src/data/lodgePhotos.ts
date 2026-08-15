@@ -6,11 +6,19 @@ export interface LodgePhoto {
   caption: string;
   locationTag: string;
   aspect: 'landscape' | 'portrait' | 'wide';
+  fallbackUrl?: string;
   featuredInHero?: boolean;
   featuredInAccommodations?: boolean;
   featuredInFishery?: boolean;
 }
 
+/**
+ * GREY RIVER LODGE PHOTO REGISTRY
+ * 
+ * To add new photos:
+ * 1. Place the photo file in your repository's `public/` folder (e.g. `public/my-photo.jpg`).
+ * 2. Add an object to the LODGE_PHOTOS array below with `filename: 'my-photo.jpg'`.
+ */
 export const LODGE_PHOTOS: LodgePhoto[] = [
   {
     id: 'lodge-compound-helipad',
@@ -20,6 +28,7 @@ export const LODGE_PHOTOS: LodgePhoto[] = [
     caption: 'Handcrafted timber compound with green metal roof, wrap-around cedar deck, and private helicopter staging deck overlooking the south coast mountains.',
     locationTag: 'Grey River Lodge Compound',
     aspect: 'wide',
+    fallbackUrl: 'https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=1600&q=80',
     featuredInHero: true,
     featuredInAccommodations: true
   },
@@ -31,6 +40,7 @@ export const LODGE_PHOTOS: LodgePhoto[] = [
     caption: 'Morning perspective from the main lodge veranda with waders and wading jackets drying on cedar log railings above the river boardwalk.',
     locationTag: 'Main Lodge Veranda',
     aspect: 'wide',
+    fallbackUrl: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80',
     featuredInAccommodations: true
   },
   {
@@ -41,6 +51,7 @@ export const LODGE_PHOTOS: LodgePhoto[] = [
     caption: 'Aerial panorama of the wild river bend, showing deep peat-tinted holding pools, granite boulder lines, and virgin boreal pine forest.',
     locationTag: 'Canyon Pool / Lower Rapids',
     aspect: 'wide',
+    fallbackUrl: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1600&q=80',
     featuredInHero: true,
     featuredInFishery: true
   },
@@ -52,6 +63,7 @@ export const LODGE_PHOTOS: LodgePhoto[] = [
     caption: 'Elevated view along the granite ledges of Grey River where ascending salmon rest in crystal pools between fast-water chutes.',
     locationTag: 'Upper River Canyon',
     aspect: 'portrait',
+    fallbackUrl: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=1600&q=80',
     featuredInFishery: true
   },
   {
@@ -62,6 +74,7 @@ export const LODGE_PHOTOS: LodgePhoto[] = [
     caption: 'A gleaming sea-fresh silver Atlantic salmon resting in shallow gin-clear river current beside a handcrafted bamboo fly rod.',
     locationTag: 'Gravel Run Holding Pool',
     aspect: 'portrait',
+    fallbackUrl: 'https://images.unsplash.com/photo-1535557142533-b5e1cc6e2a5d?auto=format&fit=crop&w=1600&q=80',
     featuredInHero: true,
     featuredInFishery: true
   },
@@ -73,6 +86,7 @@ export const LODGE_PHOTOS: LodgePhoto[] = [
     caption: 'A triumphant angler holding a bright Atlantic salmon hooked on a dry fly in the rushing waters of Grey River.',
     locationTag: 'Rapid Chute Pool',
     aspect: 'landscape',
+    fallbackUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80',
     featuredInHero: true,
     featuredInFishery: true
   },
@@ -84,6 +98,7 @@ export const LODGE_PHOTOS: LodgePhoto[] = [
     caption: 'A magnificent wild Woodland Caribou stag cooling off in the crystal-clear waters of the Grey River watershed.',
     locationTag: 'Upper Shallows Corridor',
     aspect: 'portrait',
+    fallbackUrl: 'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=1600&q=80',
     featuredInFishery: true
   },
   {
@@ -94,6 +109,7 @@ export const LODGE_PHOTOS: LodgePhoto[] = [
     caption: 'Sunlit afternoon on the covered porch with handcrafted log columns overlooking the boardwalk to the river.',
     locationTag: 'Riverfront Deck',
     aspect: 'portrait',
+    fallbackUrl: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1600&q=80',
     featuredInAccommodations: true
   }
 ];

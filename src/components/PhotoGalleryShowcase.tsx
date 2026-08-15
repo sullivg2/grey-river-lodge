@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { LODGE_PHOTOS, LodgePhoto } from '../data/lodgePhotos';
 import { LodgeImage } from './LodgeImage';
-import { Camera, MapPin, X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
+import { Camera, MapPin, X, Maximize2 } from 'lucide-react';
 
 interface PhotoGalleryShowcaseProps {
   filterCategory?: string;
@@ -29,6 +29,7 @@ export const PhotoGalleryShowcase: React.FC<PhotoGalleryShowcaseProps> = ({
 
   return (
     <div className="space-y-8">
+      
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div className="space-y-2">
@@ -71,6 +72,8 @@ export const PhotoGalleryShowcase: React.FC<PhotoGalleryShowcaseProps> = ({
             <div className="aspect-[4/3] overflow-hidden bg-slate-900 relative">
               <LodgeImage
                 filename={photo.filename}
+                fallbackUrl={photo.fallbackUrl}
+                category={photo.category}
                 alt={photo.title}
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
               />
@@ -84,7 +87,7 @@ export const PhotoGalleryShowcase: React.FC<PhotoGalleryShowcaseProps> = ({
                 {photo.category}
               </span>
             </div>
-
+            
             <div className="p-4 space-y-1.5 flex-grow flex flex-col justify-between">
               <div>
                 <h4 className="font-serif font-bold text-slate-900 text-sm group-hover:text-[#D97746] transition-colors line-clamp-1">
@@ -133,6 +136,8 @@ export const PhotoGalleryShowcase: React.FC<PhotoGalleryShowcaseProps> = ({
             <div className="relative bg-[#0B1014] flex items-center justify-center max-h-[60vh] overflow-hidden">
               <LodgeImage
                 filename={activePhoto.filename}
+                fallbackUrl={activePhoto.fallbackUrl}
+                category={activePhoto.category}
                 alt={activePhoto.title}
                 className="max-h-[60vh] w-auto max-w-full object-contain"
               />
@@ -147,6 +152,7 @@ export const PhotoGalleryShowcase: React.FC<PhotoGalleryShowcaseProps> = ({
           </div>
         </div>
       )}
+
     </div>
   );
 };

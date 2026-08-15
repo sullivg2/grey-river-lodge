@@ -34,7 +34,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity scale-105 transform transition-transform duration-1000"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=2000&q=80')`
+            backgroundImage: `url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=2000&q=80')`
           }}
         />
         
