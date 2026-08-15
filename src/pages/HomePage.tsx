@@ -2,6 +2,7 @@ import React from 'react';
 import { PageId } from '../types';
 import { LiveRiverTicker } from '../components/LiveRiverTicker';
 import { PhotoGalleryShowcase } from '../components/PhotoGalleryShowcase';
+import { GearBanner } from '../components/GearBanner';
 import { SEASON_WINDOWS, TESTIMONIALS } from '../data/riverData';
 import { 
   ArrowRight, 
@@ -288,6 +289,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
         </div>
       </section>
+
+      {/* 4.5 TACKLE ARSENAL & PARTNERSHIP BANNER */}
+      <GearBanner onNavigate={onNavigate} />
 
       {/* 5. GUEST TESTIMONIALS */}
       <section className="py-24 bg-[#11191F] text-white">
