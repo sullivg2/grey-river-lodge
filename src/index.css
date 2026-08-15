@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --color-slate-950: #0B1014;
+  --color-slate-900: #11191F;
+  --color-slate-800: #1B2A32;
+  --color-slate-700: #263B46;
+  --color-slate-600: #3E5462;
+  --color-slate-500: #5F7786;
+  --color-forest: #2D4A3E;
+  --color-forest-dark: #1F342B;
+  --color-forest-light: #3E6656;
+  --color-ochre: #D97746;
+  --color-ochre-hover: #C26334;
+  --color-ochre-light: #E79469;
+  --color-birch: #F5F2EB;
+  --color-birch-light: #FAF8F4;
+  --color-birch-dark: #E8E3D7;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: #F5F2EB;
+    color: #1B2A32;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #11191F;
+}
+::-webkit-scrollbar-thumb {
+  background: #263B46;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D97746;
+}

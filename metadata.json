@@ -1,0 +1,6 @@
+{
+  "name": "Grey River Lodge - Atlantic Salmon Outfitter",
+  "description": "Exclusive Atlantic salmon fly fishing and wilderness lodge on the pristine south coast of Newfoundland.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
