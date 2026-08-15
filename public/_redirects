@@ -1,0 +1,10 @@
+[[redirects]]
+  from = "/api/river-gauge"
+  to = "https://dd.weather.gc.ca/today/hydrometric/csv/NL/hourly/NL_02ZD002_hourly_hydrometric.csv"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

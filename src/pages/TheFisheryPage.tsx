@@ -3,6 +3,7 @@ import { PageId } from '../types';
 import { RiverPoolExplorer } from '../components/RiverPoolExplorer';
 import { FlyBoxExplorer } from '../components/FlyBoxExplorer';
 import { RiverGaugeCard } from '../components/RiverGaugeCard';
+import { PhotoGalleryShowcase } from '../components/PhotoGalleryShowcase';
 import { 
   Waves, 
   Fish, 
@@ -10,9 +11,9 @@ import {
   Sparkles, 
   Eye, 
   Compass, 
-  ArrowRight,
-  Droplets,
-  Calendar
+  ArrowRight, 
+  Droplets, 
+  Calendar 
 } from 'lucide-react';
 
 interface TheFisheryPageProps {
@@ -95,6 +96,15 @@ export const TheFisheryPage: React.FC<TheFisheryPageProps> = ({ onNavigate }) =>
         {/* 2. INTERACTIVE FLY BOX EXPLORER */}
         <div className="mb-20">
           <FlyBoxExplorer />
+        </div>
+
+        {/* Genuine River & Trophy Catch Photography Showcase */}
+        <div className="mb-16">
+          <PhotoGalleryShowcase
+            filterCategory="The Fishery"
+            title="The River in Action"
+            subtitle="Aerial perspectives of Grey River canyon pools, white water chutes, and untouched wilderness corridors."
+          />
         </div>
 
         {/* Recommended Tackle & Gear Specs (from prompt) */}

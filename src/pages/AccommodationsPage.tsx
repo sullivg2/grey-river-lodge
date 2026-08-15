@@ -1,5 +1,7 @@
 import React from 'react';
 import { PageId } from '../types';
+import { LodgeImage } from '../components/LodgeImage';
+import { PhotoGalleryShowcase } from '../components/PhotoGalleryShowcase';
 import { 
   Home, 
   Zap, 
@@ -13,7 +15,8 @@ import {
   Bed, 
   Bath, 
   ArrowRight,
-  ShieldCheck
+  ShieldCheck,
+  Compass
 } from 'lucide-react';
 
 interface AccommodationsPageProps {
@@ -43,15 +46,15 @@ export const AccommodationsPage: React.FC<AccommodationsPageProps> = ({ onNaviga
           
           {/* Main Lodge Card */}
           <div className="bg-white rounded-xl border border-slate-200 shadow-md overflow-hidden flex flex-col justify-between">
-            <div className="h-48 bg-[#1B2A32] relative overflow-hidden flex items-center justify-center">
-              <div 
-                className="absolute inset-0 bg-cover bg-center opacity-40"
-                style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80')`
-                }}
+            <div className="h-56 bg-[#1B2A32] relative overflow-hidden flex items-end">
+              <LodgeImage 
+                filename="9c19e13a-dc5e-4fb2-b418-46dd08758383.JPG"
+                alt="Grey River Main Lodge and Helipad"
+                className="absolute inset-0 w-full h-full object-cover"
               />
-              <div className="relative z-10 text-center space-y-1">
-                <span className="text-xs font-mono uppercase tracking-widest text-[#D97746] font-bold">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#11191F] via-[#11191F]/40 to-transparent" />
+              <div className="relative z-10 p-5 space-y-1">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#D97746] font-bold bg-[#11191F]/80 px-2.5 py-0.5 rounded backdrop-blur-sm inline-block">
                   Central Gathering Hub
                 </span>
                 <h3 className="text-2xl font-serif font-bold text-white">The Main Lodge</h3>
@@ -114,15 +117,15 @@ export const AccommodationsPage: React.FC<AccommodationsPageProps> = ({ onNaviga
 
           {/* Secondary Lodge Card */}
           <div className="bg-white rounded-xl border border-slate-200 shadow-md overflow-hidden flex flex-col justify-between">
-            <div className="h-48 bg-[#2D4A3E] relative overflow-hidden flex items-center justify-center">
-              <div 
-                className="absolute inset-0 bg-cover bg-center opacity-40"
-                style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1200&q=80')`
-                }}
+            <div className="h-56 bg-[#2D4A3E] relative overflow-hidden flex items-end">
+              <LodgeImage 
+                filename="5e93c486-9c74-495a-9a28-c445f6057ecb.JPG"
+                alt="Grey River Lodge Porch and River Vista"
+                className="absolute inset-0 w-full h-full object-cover"
               />
-              <div className="relative z-10 text-center space-y-1">
-                <span className="text-xs font-mono uppercase tracking-widest text-[#D97746] font-bold">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#11191F] via-[#11191F]/40 to-transparent" />
+              <div className="relative z-10 p-5 space-y-1">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#D97746] font-bold bg-[#11191F]/80 px-2.5 py-0.5 rounded backdrop-blur-sm inline-block">
                   Private Quarters & Syndicate
                 </span>
                 <h3 className="text-2xl font-serif font-bold text-white">The Secondary Lodge</h3>
@@ -260,6 +263,29 @@ export const AccommodationsPage: React.FC<AccommodationsPageProps> = ({ onNaviga
               <p>Pan-seared cod, prime roast beef, fresh local berries, wine pairings, and wood-stove fireside stories.</p>
             </div>
           </div>
+        </div>
+
+        {/* Real Lodge Compound Photo Gallery */}
+        <div className="pt-4">
+          <PhotoGalleryShowcase
+            filterCategory="Lodge & Grounds"
+            title="Lodge Architecture & Compound Views"
+            subtitle="Explore our green-roofed timber lodges, private heli-pad, cedar verandas, and boardwalk network."
+          />
+        </div>
+
+        {/* Bottom Booking CTA */}
+        <div className="bg-white p-8 sm:p-10 rounded-xl border border-slate-200 text-center space-y-4 shadow-sm">
+          <h3 className="text-2xl font-serif text-slate-900">Experience Genuine Off-Grid Solitude</h3>
+          <p className="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto">
+            Our 8-rod weekly cap guarantees personal space, private bedroom quarters, and dedicated outfitter hospitality throughout your stay.
+          </p>
+          <button
+            onClick={() => onNavigate('contact')}
+            className="inline-block bg-[#D97746] hover:bg-[#C26334] text-white text-xs font-bold uppercase tracking-wider px-8 py-3.5 rounded shadow transition cursor-pointer"
+          >
+            Inquire for Available Lodge Weeks
+          </button>
         </div>
 
       </div>

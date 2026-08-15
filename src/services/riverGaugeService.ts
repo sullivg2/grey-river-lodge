@@ -122,8 +122,9 @@ export function parseEcccCsv(csvText: string): RiverGaugeReading[] {
 export async function fetchLiveGreyRiverGauge(): Promise<RiverGaugeReading> {
   const directUrl = 'https://dd.weather.gc.ca/today/hydrometric/csv/NL/hourly/NL_02ZD002_hourly_hydrometric.csv';
   
-  // Try direct fetch first, and fallback to CORS proxies if browser environment blocks cross-origin
+  // Try Netlify edge rewrite first (/api/river-gauge), then direct ECCC, then CORS proxies
   const fetchUrls = [
+    '/api/river-gauge',
     directUrl,
     `https://api.allorigins.win/raw?url=${encodeURIComponent(directUrl)}`,
     `https://corsproxy.io/?${encodeURIComponent(directUrl)}`

@@ -1,6 +1,7 @@
 import React from 'react';
 import { PageId } from '../types';
 import { LiveRiverTicker } from '../components/LiveRiverTicker';
+import { PhotoGalleryShowcase } from '../components/PhotoGalleryShowcase';
 import { SEASON_WINDOWS, TESTIMONIALS } from '../data/riverData';
 import { 
   ArrowRight, 
@@ -187,6 +188,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
           </div>
 
+        </div>
+      </section>
+
+      {/* 3.5 AUTHENTIC LODGE PHOTOGRAPHY SHOWCASE */}
+      <section className="py-20 bg-[#EDE8DE] border-y border-slate-300/70">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <PhotoGalleryShowcase 
+            title="The Real Grey River Experience" 
+            subtitle="Authentic guest photography from our 3,250+ sq. ft. timber lodge, granite river pools, and sea-bright Atlantic salmon catches."
+          />
         </div>
       </section>
 
