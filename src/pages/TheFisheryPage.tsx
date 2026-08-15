@@ -2,6 +2,7 @@ import React from 'react';
 import { PageId } from '../types';
 import { RiverPoolExplorer } from '../components/RiverPoolExplorer';
 import { FlyBoxExplorer } from '../components/FlyBoxExplorer';
+import { RiverGaugeCard } from '../components/RiverGaugeCard';
 import { 
   Waves, 
   Fish, 
@@ -25,7 +26,7 @@ export const TheFisheryPage: React.FC<TheFisheryPageProps> = ({ onNavigate }) =>
       {/* Top Header */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
-        <div className="space-y-4 mb-16">
+        <div className="space-y-4 mb-12">
           <span className="text-xs uppercase tracking-widest text-[#D97746] font-bold">
             Unpressured Water
           </span>
@@ -35,6 +36,11 @@ export const TheFisheryPage: React.FC<TheFisheryPageProps> = ({ onNavigate }) =>
           <p className="text-lg text-slate-700 leading-relaxed max-w-3xl">
             Carving its way through dramatic coastal fjords, the Grey River system offers cold, crystal-clear water with world-class sight fishing for hard-fighting wild Atlantic salmon and trophy sea-run brook trout.
           </p>
+        </div>
+
+        {/* Live ECCC Station 02ZD002 Hydrometric Gauge Card */}
+        <div className="mb-16">
+          <RiverGaugeCard />
         </div>
 
         {/* 3 Season Cards */}
