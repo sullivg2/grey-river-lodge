@@ -4,15 +4,10 @@ import {
   Send, 
   CheckCircle2, 
   Mail, 
-  Phone, 
   MapPin, 
-  ShieldCheck, 
-  Calendar, 
-  Users, 
-  Sparkles, 
-  Download,
   Copy,
-  Check
+  Check,
+  Loader2
 } from 'lucide-react';
 
 interface ContactPageProps {
@@ -32,9 +27,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialData }) => {
     partySize: initialData?.partySize || '1-2',
     seasonWindow: initialData?.seasonWindow || 'july-peak',
     experience: 'intermediate',
-    notes: ''
+    notes: '',
+    'bot-field': ''
   });
 
+  const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [inquiryRef, setInquiryRef] = useState('');
   const [copiedRef, setCopiedRef] = useState(false);
@@ -49,13 +46,21 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialData }) => {
     }
   }, [initialData]);
 
+  const encode = (data: Record<string, string>) => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Input validation and sanitization
     const errors: string[] = [];
+    const cleanName = DOMPurify.sanitize(formData.name).trim();
+    const cleanNotes = DOMPurify.sanitize(formData.notes).trim();
     
-    if (!formData.name.trim() || formData.name.length > 100) {
+    if (!cleanName || cleanName.length > 100) {
       errors.push('Name must be 1-100 characters');
     }
     
@@ -63,11 +68,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialData }) => {
       errors.push('Invalid email format');
     }
     
-    if (!/^\d{10,}$/.test(formData.phone.replace(/\D/g, ''))) {
+    if (formData.phone && !/^\d{10,}$/.test(formData.phone.replace(/\D/g, ''))) {
       errors.push('Phone must be at least 10 digits');
     }
     
-    if (formData.notes.length > 2000) {
+    if (cleanNotes.length > 2000) {
       errors.push('Notes must be under 2000 characters');
     }
 
@@ -76,7 +81,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialData }) => {
       return;
     }
 
-    // Rate limiting (client-side, also implement server-side in function)
+    // Rate limiting (5s buffer)
     const lastSubmit = localStorage.getItem('lastFormSubmit');
     const now = Date.now();
     if (lastSubmit && (now - parseInt(lastSubmit)) < 5000) {
@@ -84,32 +89,41 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialData }) => {
       return;
     }
 
+    setSubmitting(true);
+
     try {
-      // Generate reference code server-side for better security
-      const refResponse = await fetch('/.netlify/functions/generate-reference', {
+      // 1. Post directly to Netlify Forms endpoint
+      const response = await fetch('/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({
+          'form-name': 'booking-inquiry',
+          name: cleanName,
+          email: formData.email,
+          phone: formData.phone,
+          partySize: formData.partySize,
+          seasonWindow: formData.seasonWindow,
+          experience: formData.experience,
+          notes: cleanNotes,
+          'bot-field': formData['bot-field']
+        })
       });
 
-      if (!refResponse.ok) {
-        throw new Error('Failed to generate reference code');
+      if (!response.ok) {
+        throw new Error(`Netlify form error: ${response.statusText}`);
       }
 
-      const refData = await refResponse.json();
-      const refCode = refData.refCode || `GRL-${Math.floor(100000 + Math.random() * 900000)}`;
-      
-      setInquiryRef(refCode);
-      setSubmitted(true);
-      localStorage.setItem('lastFormSubmit', now.toString());
-      window.scrollTo({ top: 120, behavior: 'smooth' });
-    } catch (err) {
-      console.error('Error generating reference:', err);
-      // Fallback: generate locally
+      // 2. Generate expedition reference code
       const refCode = `GRL-${Math.floor(100000 + Math.random() * 900000)}`;
       setInquiryRef(refCode);
       setSubmitted(true);
       localStorage.setItem('lastFormSubmit', now.toString());
       window.scrollTo({ top: 120, behavior: 'smooth' });
+    } catch (err) {
+      console.error('Error submitting form to Netlify:', err);
+      alert('Unable to submit inquiry. Please email info@greyriverlodge.com directly.');
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -187,19 +201,26 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialData }) => {
             </div>
           </div>
         ) : (
-          /* Netlify Serverless Form (Faithful to prompt) */
+          /* Netlify Connected Form */
           <form 
-            name="lodge-inquiry" 
+            name="booking-inquiry" 
             method="POST" 
             data-netlify="true" 
             data-netlify-honeypot="bot-field"
             onSubmit={handleSubmit}
             className="bg-white p-8 sm:p-10 rounded-xl shadow-md border border-slate-200 space-y-6"
           >
-            {/* Netlify Honeypot anti-spam */}
-            <input type="hidden" name="form-name" value="lodge-inquiry" />
+            {/* Hidden Fields for Netlify */}
+            <input type="hidden" name="form-name" value="booking-inquiry" />
             <p className="hidden" style={{ display: 'none' }}>
-              <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+              <label>
+                Don’t fill this out if you're human: 
+                <input 
+                  name="bot-field" 
+                  value={formData['bot-field']} 
+                  onChange={(e) => setFormData({ ...formData, 'bot-field': e.target.value })} 
+                />
+              </label>
             </p>
 
             {/* Name & Email */}
@@ -214,7 +235,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialData }) => {
                   required 
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#2D4A3E] focus:outline-none text-sm transition" 
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#D97746] focus:outline-none text-sm transition placeholder:text-slate-400" 
                   placeholder="John Doe"
                 />
               </div>
@@ -228,7 +249,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialData }) => {
                   required 
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#2D4A3E] focus:outline-none text-sm transition" 
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#D97746] focus:outline-none text-sm transition placeholder:text-slate-400" 
                   placeholder="john@example.com"
                 />
               </div>
@@ -245,7 +266,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialData }) => {
                   name="phone" 
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#2D4A3E] focus:outline-none text-sm transition" 
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#D97746] focus:outline-none text-sm transition placeholder:text-slate-400" 
                   placeholder="+1 (555) 000-0000"
                 />
               </div>
@@ -254,10 +275,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialData }) => {
                   Party Size
                 </label>
                 <select 
-                  name="party-size" 
+                  name="partySize" 
                   value={formData.partySize}
                   onChange={(e) => setFormData({ ...formData, partySize: e.target.value })}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#2D4A3E] focus:outline-none text-sm bg-white transition"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#D97746] focus:outline-none text-sm bg-white transition cursor-pointer"
                 >
                   <option value="1-2">1 - 2 Anglers</option>
                   <option value="3-4">3 - 4 Anglers</option>
@@ -274,10 +295,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialData }) => {
                   Target Season
                 </label>
                 <select 
-                  name="season-window" 
+                  name="seasonWindow" 
                   value={formData.seasonWindow}
                   onChange={(e) => setFormData({ ...formData, seasonWindow: e.target.value })}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#2D4A3E] focus:outline-none text-sm bg-white transition"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#D97746] focus:outline-none text-sm bg-white transition cursor-pointer"
                 >
                   <option value="june-early">Late June (Fresh Run Starts)</option>
                   <option value="july-peak">July (Peak Dry Fly Action)</option>
@@ -293,7 +314,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialData }) => {
                   name="experience" 
                   value={formData.experience}
                   onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#2D4A3E] focus:outline-none text-sm bg-white transition"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#D97746] focus:outline-none text-sm bg-white transition cursor-pointer"
                 >
                   <option value="beginner">Beginner / New to Salmon</option>
                   <option value="intermediate">Intermediate Single-Hand</option>
@@ -312,18 +333,28 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialData }) => {
                 rows={4} 
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#2D4A3E] focus:outline-none text-sm transition" 
+                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#D97746] focus:outline-none text-sm transition placeholder:text-slate-400" 
                 placeholder="Tell us about your trip goals, dietary restrictions, or private charter preferences..."
               ></textarea>
             </div>
 
-            {/* Netlify Form Submit Button */}
+            {/* Submit Button */}
             <button 
               type="submit" 
-              className="w-full bg-[#D97746] hover:bg-[#C26334] text-white text-sm font-semibold uppercase tracking-wider py-4 rounded-lg shadow-lg transition duration-200 cursor-pointer flex items-center justify-center gap-2"
+              disabled={submitting}
+              className="w-full bg-[#D97746] hover:bg-[#C26334] disabled:bg-slate-400 text-white text-sm font-semibold uppercase tracking-wider py-4 rounded-lg shadow-lg transition duration-200 cursor-pointer flex items-center justify-center gap-2"
             >
-              <Send className="w-4 h-4" />
-              <span>Submit Booking Inquiry</span>
+              {submitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>Submitting Inquiry...</span>
+                </>
+              ) : (
+                <>
+                  <Send className="w-4 h-4" />
+                  <span>Submit Booking Inquiry</span>
+                </>
+              )}
             </button>
 
             <div className="pt-2 text-center">
