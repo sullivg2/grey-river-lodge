@@ -8,7 +8,6 @@ import { AccommodationsPage } from './pages/AccommodationsPage';
 import { RatesPage } from './pages/RatesPage';
 import { GettingHerePage } from './pages/GettingHerePage';
 import { ContactPage } from './pages/ContactPage';
-import { AiGuideChat } from './components/AiGuideChat';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>('home');
@@ -77,9 +76,6 @@ export default function App() {
       <Footer
         onNavigate={handleNavigate}
       />
-
-      {/* AI Outfitter Concierge */}
-      <AiGuideChat />
 
     </div>
   );
