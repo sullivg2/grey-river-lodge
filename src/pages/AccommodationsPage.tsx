@@ -11,12 +11,11 @@ import {
   Sun, 
   Droplets, 
   CheckCircle2, 
-  Users, 
   Bed, 
   Bath, 
-  ArrowRight,
-  ShieldCheck,
-  Compass
+  Compass,
+  Warehouse,
+  Anchor
 } from 'lucide-react';
 
 interface AccommodationsPageProps {
@@ -30,15 +29,15 @@ export const AccommodationsPage: React.FC<AccommodationsPageProps> = ({ onNaviga
         
         {/* Header */}
         <div className="space-y-4">
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#D97746] font-bold bg-[#D97746]/10 px-3 py-1 rounded-full border border-[#D97746]/20">
+          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#D97746] font-bold bg-[#D97746]/10 px-3.5 py-1 rounded-full border border-[#D97746]/20">
             <Compass className="w-3.5 h-3.5" />
-            <span>Newfoundland's Most Remote Salmon Outpost • Helicopter Access Only</span>
+            <span>The Forks Lodge • Newfoundland's Most Remote Salmon Outpost</span>
           </div>
-          <h1 className="text-4xl sm:text-6xl font-serif text-[#11191F]">
-            Lodge Accommodations
+          <h1 className="text-4xl sm:text-6xl font-serif text-[#11191F] tracking-tight">
+            Lodge Accommodations & Compound
           </h1>
           <p className="text-lg text-slate-700 leading-relaxed max-w-3xl">
-            More than 3,250 square feet of handcrafted pine and timber facilities nestled in pure roadless isolation. Designed for relaxation, home-cooked dining, and complete comfort after long days on the river.
+            Over 3,250 square feet of handcrafted pine, timber, and off-grid facilities positioned in true roadless wilderness. Engineered with mission-grade electrical redundancy, high-speed connectivity, and complete private comfort.
           </p>
         </div>
 
@@ -57,10 +56,10 @@ export const AccommodationsPage: React.FC<AccommodationsPageProps> = ({ onNaviga
               <div className="absolute inset-0 bg-gradient-to-t from-[#11191F] via-[#11191F]/40 to-transparent" />
               <div className="relative z-10 p-5 space-y-1">
                 <span className="text-[10px] font-mono uppercase tracking-widest text-[#D97746] font-bold bg-[#11191F]/80 px-2.5 py-0.5 rounded backdrop-blur-sm inline-block">
-                  Central Gathering Hub
+                  Central Social Core
                 </span>
                 <h3 className="text-2xl font-serif font-bold text-white">The Main Lodge</h3>
-                <span className="inline-block text-[11px] bg-[#D97746] text-white font-bold px-3 py-0.5 rounded-full">
+                <span className="inline-block text-[11px] bg-[#D97746] text-white font-bold px-3 py-0.5 rounded-full font-mono">
                   1,929 Sq. Ft.
                 </span>
               </div>
@@ -68,22 +67,22 @@ export const AccommodationsPage: React.FC<AccommodationsPageProps> = ({ onNaviga
 
             <div className="p-8 space-y-6 flex-grow">
               <p className="text-sm text-slate-600 leading-relaxed">
-                The social core of the property featuring 5 private guest bedrooms, 5 washrooms, an open lounge with a wood-burning stove, commercial kitchen, and panoramic river views across the canyon.
+                Robust wood and concrete foundation construction featuring pine paneling, hardwood and ceramic tile flooring, and panoramic vistas overlooking the river gorge and helipad.
               </p>
 
               {/* Floor Plan Quick Badges */}
               <div className="grid grid-cols-2 gap-3 py-3 border-y border-slate-100 text-xs">
                 <div className="flex items-center gap-2 text-slate-700">
                   <Bed className="w-4 h-4 text-[#D97746]" />
-                  <span className="font-semibold">5 Private Bedrooms</span>
+                  <span className="font-semibold">5 Guest Bedrooms</span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-700">
                   <Bath className="w-4 h-4 text-[#D97746]" />
-                  <span className="font-semibold">5 Dedicated Washrooms</span>
+                  <span className="font-semibold">5 Full Washrooms</span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-700">
                   <Flame className="w-4 h-4 text-[#D97746]" />
-                  <span>Wood Stove Lounge</span>
+                  <span>Wood Stove & Baseboards</span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-700">
                   <Utensils className="w-4 h-4 text-[#D97746]" />
@@ -91,18 +90,18 @@ export const AccommodationsPage: React.FC<AccommodationsPageProps> = ({ onNaviga
                 </div>
               </div>
 
-              <ul className="text-xs text-slate-700 space-y-2">
+              <ul className="text-xs text-slate-700 space-y-2.5">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#2D4A3E]" />
-                  <span>Wood stove & electric backup baseboard heating</span>
+                  <CheckCircle2 className="w-4 h-4 text-[#2D4A3E] shrink-0" />
+                  <span>Log walls with custom pine ceilings and hardwood finishes</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#2D4A3E]" />
-                  <span>Commercial kitchen & full 3-course dinner service</span>
+                  <CheckCircle2 className="w-4 h-4 text-[#2D4A3E] shrink-0" />
+                  <span>Full dining service, commercial refrigeration, and chef station</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#2D4A3E]" />
-                  <span>Expansive timber deck overlooking the river and landing pad</span>
+                  <CheckCircle2 className="w-4 h-4 text-[#2D4A3E] shrink-0" />
+                  <span>Expansive timber deck directly connecting to the river landing</span>
                 </li>
               </ul>
             </div>
@@ -129,10 +128,10 @@ export const AccommodationsPage: React.FC<AccommodationsPageProps> = ({ onNaviga
               <div className="absolute inset-0 bg-gradient-to-t from-[#11191F] via-[#11191F]/40 to-transparent" />
               <div className="relative z-10 p-5 space-y-1">
                 <span className="text-[10px] font-mono uppercase tracking-widest text-[#D97746] font-bold bg-[#11191F]/80 px-2.5 py-0.5 rounded backdrop-blur-sm inline-block">
-                  Private Quarters & Syndicate
+                  Private Syndicate Annex
                 </span>
                 <h3 className="text-2xl font-serif font-bold text-white">The Secondary Lodge</h3>
-                <span className="inline-block text-[11px] bg-[#2D4A3E] border border-white/30 text-white font-bold px-3 py-0.5 rounded-full">
+                <span className="inline-block text-[11px] bg-[#2D4A3E] border border-white/30 text-white font-bold px-3 py-0.5 rounded-full font-mono">
                   930 Sq. Ft.
                 </span>
               </div>
@@ -140,7 +139,7 @@ export const AccommodationsPage: React.FC<AccommodationsPageProps> = ({ onNaviga
 
             <div className="p-8 space-y-6 flex-grow">
               <p className="text-sm text-slate-600 leading-relaxed">
-                Ideal for private fishing parties, corporate teams, or families wanting private quarters with dedicated amenities while enjoying full access to main lodge dining and social gatherings.
+                A dedicated, single-story rustic timber annex tailored for private parties, guides, or corporate teams seeking quiet autonomy alongside full main lodge hospitality.
               </p>
 
               {/* Floor Plan Quick Badges */}
@@ -151,30 +150,30 @@ export const AccommodationsPage: React.FC<AccommodationsPageProps> = ({ onNaviga
                 </div>
                 <div className="flex items-center gap-2 text-slate-700">
                   <Bath className="w-4 h-4 text-[#2D4A3E]" />
-                  <span className="font-semibold">5 Dedicated Washrooms</span>
+                  <span className="font-semibold">5 Washroom Facilities</span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-700">
                   <Flame className="w-4 h-4 text-[#2D4A3E]" />
-                  <span>Private Wood Stove</span>
+                  <span>Wood Stove Heating</span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-700">
                   <Utensils className="w-4 h-4 text-[#2D4A3E]" />
-                  <span>Private Kitchenette</span>
+                  <span>Kitchen & Lounge</span>
                 </div>
               </div>
 
-              <ul className="text-xs text-slate-700 space-y-2">
+              <ul className="text-xs text-slate-700 space-y-2.5">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#2D4A3E]" />
-                  <span>3 Private Bedrooms with individual thermostatic controls</span>
+                  <CheckCircle2 className="w-4 h-4 text-[#2D4A3E] shrink-0" />
+                  <span>Painted timber floors and authentic wood-lath log ceilings</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#2D4A3E]" />
-                  <span>Dedicated lounge with wood stove & card table</span>
+                  <CheckCircle2 className="w-4 h-4 text-[#2D4A3E] shrink-0" />
+                  <span>Dedicated lounge with wood stove and morning coffee station</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#2D4A3E]" />
-                  <span>Private kitchenette with coffee station & beverage coolers</span>
+                  <CheckCircle2 className="w-4 h-4 text-[#2D4A3E] shrink-0" />
+                  <span>Full electrical integration into the 200-Amp central grid</span>
                 </li>
               </ul>
             </div>
@@ -191,71 +190,169 @@ export const AccommodationsPage: React.FC<AccommodationsPageProps> = ({ onNaviga
 
         </div>
 
-        {/* Off-Grid Infrastructure (Prompt Requirement) */}
+        {/* 3 Dedicated Outbuildings & Compound Logistics */}
         <div className="bg-white p-8 sm:p-10 rounded-xl border border-slate-200 shadow-sm space-y-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-100 pb-4">
             <div>
               <span className="text-[10px] font-mono uppercase tracking-widest text-[#D97746] font-bold">
-                Mission-Grade Redundancy
+                Support Infrastructure
               </span>
               <h3 className="text-2xl font-serif font-bold text-slate-900">
-                Off-Grid Power & Utilities Architecture
+                Dedicated Outbuildings & Storage (393 Sq. Ft.)
               </h3>
             </div>
-            <span className="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-              <Zap className="w-3.5 h-3.5" /> 200-Amp Continuous
+            <span className="text-xs font-mono font-bold text-slate-600 bg-slate-100 border border-slate-200 px-3 py-1 rounded-full">
+              3 Free-Standing Facilities
             </span>
           </div>
 
-          <p className="text-sm text-slate-700 leading-relaxed">
-            The property is fully equipped with continuous 200-amp power backed by a dual-generator plant (Honda EU3000 & Yanmar diesel) and a 2-panel solar array with high-capacity battery storage, ensuring uninterrupted LED lighting, charging capabilities for cameras and laptops, hot pressurized running water, and Starlink satellite communications in true roadless wilderness.
+          {/* 3 Physical Outbuilding Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            {/* Card 1: Equipment & Fire Shed */}
+            <div className="bg-[#FAF8F4] p-5 rounded-lg border border-slate-200 flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="w-9 h-9 rounded-lg bg-[#D97746]/10 border border-[#D97746]/20 flex items-center justify-center text-[#D97746]">
+                    <Warehouse className="w-4 h-4" />
+                  </div>
+                  <span className="text-[11px] font-mono font-bold bg-white px-2.5 py-1 rounded border border-slate-200 text-slate-700">
+                    16' × 12' • 192 sq ft
+                  </span>
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900">Main Equipment & Fire Shed</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed mt-1">
+                    Houses property quad/ATV, high-pressure fire suppression pump system, central water pump, and comprehensive maintenance bench.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2: Dedicated Food Storage */}
+            <div className="bg-[#FAF8F4] p-5 rounded-lg border border-slate-200 flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="w-9 h-9 rounded-lg bg-[#2D4A3E]/10 border border-[#2D4A3E]/20 flex items-center justify-center text-[#2D4A3E]">
+                    <Utensils className="w-4 h-4" />
+                  </div>
+                  <span className="text-[11px] font-mono font-bold bg-white px-2.5 py-1 rounded border border-slate-200 text-slate-700">
+                    12' × 10' • 120 sq ft
+                  </span>
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900">Secondary Food Storage</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed mt-1">
+                    Climate-controlled cold pantry equipped with multiple deep freezers and commercial refrigeration units for expedition provisions.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3: Generator & Solar Plant Shed */}
+            <div className="bg-[#FAF8F4] p-5 rounded-lg border border-slate-200 flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-600">
+                    <Zap className="w-4 h-4" />
+                  </div>
+                  <span className="text-[11px] font-mono font-bold bg-white px-2.5 py-1 rounded border border-slate-200 text-slate-700">
+                    9' × 9' • 81 sq ft
+                  </span>
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900">Power & Generator Shed</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed mt-1">
+                    Houses the off-grid Yanmar diesel, Honda, and Champion generators alongside battery charge controllers and solar bank management.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* River Fleet & Helipad Logistics Bar */}
+          <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-slate-700">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded bg-cyan-100 text-cyan-800 flex items-center justify-center shrink-0">
+                <Anchor className="w-4 h-4" />
+              </div>
+              <div>
+                <span className="font-bold text-slate-900">On-Site River Fleet & Direct Helipad: </span>
+                <span className="text-slate-600">14' Smoker Craft & 12' aluminum utility craft for canyon pool access, paired with on-compound helicopter landing pad.</span>
+              </div>
+            </div>
+            <span className="shrink-0 font-mono text-[10px] font-bold bg-white border border-slate-200 px-2.5 py-1 rounded text-slate-600 uppercase tracking-wider">
+              Turnkey Outfitted
+            </span>
+          </div>
+        </div>
+
+        {/* Off-Grid Utilities Architecture */}
+        <div className="bg-[#11191F] text-white p-8 sm:p-10 rounded-xl shadow-xl space-y-6 border border-[#263B46]">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-[#263B46] pb-4">
+            <div>
+              <span className="text-[10px] font-mono uppercase tracking-widest text-[#D97746] font-bold">
+                Mission-Grade Redundancy
+              </span>
+              <h3 className="text-2xl font-serif font-bold text-white">
+                Off-Grid Power & Utilities Architecture
+              </h3>
+            </div>
+            <span className="bg-[#2D4A3E] text-white text-xs font-mono font-bold px-3 py-1 rounded-full flex items-center gap-1">
+              <Zap className="w-3.5 h-3.5 text-amber-400" /> 200-Amp Continuous
+            </span>
+          </div>
+
+          <p className="text-sm text-[#F5F2EB]/80 leading-relaxed">
+            The Forks complex operates on an engineered 200-amp single-phase power system supported by a triple-generator plant (Yanmar Diesel, Honda EU3000, and Champion 4000) and dual solar arrays with high-capacity battery storage.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-4">
-            <div className="bg-[#FAF8F4] p-4 rounded-lg border border-slate-200">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-2">
+            <div className="bg-[#18232A] p-4 rounded-lg border border-[#263B46]">
               <Zap className="w-5 h-5 text-[#D97746] mb-2" />
-              <h4 className="text-xs font-bold uppercase text-slate-900">Dual Generator Plant</h4>
-              <p className="text-[11px] text-slate-600 mt-1">Yanmar Diesel primary + Honda EU3000 quiet backup</p>
+              <h4 className="text-xs font-bold uppercase text-white">Triple Generator Bank</h4>
+              <p className="text-[11px] text-[#F5F2EB]/70 mt-1">Yanmar Diesel, Honda EU3000 & Champion 4000</p>
             </div>
 
-            <div className="bg-[#FAF8F4] p-4 rounded-lg border border-slate-200">
-              <Sun className="w-5 h-5 text-amber-500 mb-2" />
-              <h4 className="text-xs font-bold uppercase text-slate-900">Solar Battery Storage</h4>
-              <p className="text-[11px] text-slate-600 mt-1">2-panel solar array with deep cycle battery bank</p>
+            <div className="bg-[#18232A] p-4 rounded-lg border border-[#263B46]">
+              <Sun className="w-5 h-5 text-amber-400 mb-2" />
+              <h4 className="text-xs font-bold uppercase text-white">Dual Solar Bank</h4>
+              <p className="text-[11px] text-[#F5F2EB]/70 mt-1">2-panel solar collection with deep-cycle storage</p>
             </div>
 
-            <div className="bg-[#FAF8F4] p-4 rounded-lg border border-slate-200">
-              <Droplets className="w-5 h-5 text-cyan-600 mb-2" />
-              <h4 className="text-xs font-bold uppercase text-slate-900">Hot Running Water</h4>
-              <p className="text-[11px] text-slate-600 mt-1">Continuous pressurized hot water showers in all baths</p>
+            <div className="bg-[#18232A] p-4 rounded-lg border border-[#263B46]">
+              <Droplets className="w-5 h-5 text-cyan-400 mb-2" />
+              <h4 className="text-xs font-bold uppercase text-white">Hot Running Water</h4>
+              <p className="text-[11px] text-[#F5F2EB]/70 mt-1">Commercial pressure pump with continuous hot water</p>
             </div>
 
-            <div className="bg-[#FAF8F4] p-4 rounded-lg border border-slate-200">
-              <Wifi className="w-5 h-5 text-[#2D4A3E] mb-2" />
-              <h4 className="text-xs font-bold uppercase text-slate-900">Starlink Satellite</h4>
-              <p className="text-[11px] text-slate-600 mt-1">High-speed wireless internet across lodge buildings</p>
+            <div className="bg-[#18232A] p-4 rounded-lg border border-[#263B46]">
+              <Wifi className="w-5 h-5 text-emerald-400 mb-2" />
+              <h4 className="text-xs font-bold uppercase text-white">High-Speed Comms</h4>
+              <p className="text-[11px] text-[#F5F2EB]/70 mt-1">Starlink satellite Wi-Fi across the compound</p>
             </div>
           </div>
         </div>
 
         {/* Dining & Gourmet Outfitting */}
-        <div className="bg-[#11191F] text-white p-8 sm:p-12 rounded-xl shadow-xl space-y-8 border border-[#263B46]">
+        <div className="bg-white p-8 sm:p-12 rounded-xl border border-slate-200 shadow-sm space-y-8">
           <div className="max-w-3xl space-y-3">
             <span className="text-[10px] font-mono uppercase tracking-widest text-[#D97746] font-bold">
               Wilderness Cuisine
             </span>
-            <h3 className="text-3xl font-serif text-white">
-              Gourmet Lodge Dining & Shore Lunches
+            <h3 className="text-3xl font-serif text-slate-900">
+              Lodge Dining & Streamside Lunches
             </h3>
-            <p className="text-sm text-[#F5F2EB]/80 leading-relaxed">
-              Every day starts with a hearty outfitter's hot breakfast, followed by fresh river shore lunches prepared over open fire, and concludes with multi-course dinners celebrating Atlantic seafood, prime cuts, and home-baked Newfoundland breads.
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Every day begins with a hearty hot breakfast, followed by fresh river shore lunches prepared over open fire, and concludes with multi-course dinners celebrating fresh Atlantic seafood, prime cuts, and home-baked Newfoundland fare.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 text-xs text-[#F5F2EB]/80 border-t border-[#263B46]">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 text-xs text-slate-700 border-t border-slate-100">
             <div className="space-y-1">
-              <h4 className="font-bold text-[#D97746] uppercase">Hearty Morning Table</h4>
-              <p>Fresh eggs, thick-cut bacon, blueberry pancakes, fresh fruit, and hot press coffee before the first morning tide.</p>
+              <h4 className="font-bold text-[#D97746] uppercase">Morning Outfitter Table</h4>
+              <p>Eggs, bacon, blueberry pancakes, fresh fruit, and hot press coffee before the first morning run.</p>
             </div>
             <div className="space-y-1">
               <h4 className="font-bold text-[#D97746] uppercase">River Shore Lunches</h4>
@@ -263,7 +360,7 @@ export const AccommodationsPage: React.FC<AccommodationsPageProps> = ({ onNaviga
             </div>
             <div className="space-y-1">
               <h4 className="font-bold text-[#D97746] uppercase">Chef Dinners & Desserts</h4>
-              <p>Pan-seared cod, prime roast beef, fresh local berries, wine pairings, and wood-stove fireside stories.</p>
+              <p>Pan-seared cod, prime roasts, wild berries, wine pairings, and wood-stove fireside stories.</p>
             </div>
           </div>
         </div>

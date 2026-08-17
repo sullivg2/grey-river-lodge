@@ -16,6 +16,18 @@
   <body class="bg-[#F5F2EB] text-[#1B2A32] font-sans antialiased selection:bg-[#D97746] selection:text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- Netlify Form Detection for React SPA -->
+    <form name="booking-inquiry" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="booking-inquiry" />
+      <input type="text" name="bot-field" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="partySize" />
+      <input type="text" name="seasonWindow" />
+      <input type="text" name="experience" />
+      <textarea name="notes"></textarea>
+    </form>
   </body>
 </html>
 
