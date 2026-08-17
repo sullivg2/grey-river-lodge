@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PageId } from '../types';
 
 interface GearBannerProps {
@@ -7,9 +7,6 @@ interface GearBannerProps {
 }
 
 export const GearBanner: React.FC<GearBannerProps> = ({ className = '', onNavigate }) => {
-  const [logoLoaded, setLogoLoaded] = useState(false);
-  const [logoError, setLogoError] = useState(false);
-
   const handleFisheryClick = (e: React.MouseEvent) => {
     if (onNavigate) {
       e.preventDefault();
@@ -19,14 +16,14 @@ export const GearBanner: React.FC<GearBannerProps> = ({ className = '', onNaviga
 
   return (
     <section className={`w-full bg-[#11191F] text-white py-16 sm:py-24 border-y border-slate-800/80 relative overflow-hidden ${className}`}>
-      {/* Ambient Background Glow / Subtle Texture Accent */}
+      {/* Ambient Background Glow */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#1B2A32]/40 via-transparent to-transparent pointer-events-none" />
       <div className="absolute -right-32 -top-32 w-96 h-96 bg-[#D97746]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* LEFT COLUMN: Context & Brand Story (7 cols on desktop) */}
+          {/* LEFT COLUMN: Context & Brand Story */}
           <div className="lg:col-span-7 space-y-6">
             
             {/* Eyebrow */}
@@ -37,56 +34,20 @@ export const GearBanner: React.FC<GearBannerProps> = ({ className = '', onNaviga
               </span>
             </div>
 
-            {/* DEDICATED LOGO PLACEHOLDER & BADGE AREA */}
-            <div className="flex flex-wrap items-center gap-3 pt-1">
-              <div className="group relative flex items-center justify-center min-h-[52px] px-5 py-2.5 rounded-lg bg-gradient-to-b from-slate-800 to-slate-850 border border-slate-700/80 hover:border-[#D97746]/50 shadow-md transition-all duration-300">
-                {/* SVG/Image Target (Checked against /images/nam-logo.svg & /nam-logo.svg) */}
-                {!logoError && (
-                  <img 
-                    src="/images/nam-logo.svg" 
-                    alt="NAM Products Logo" 
-                    className={`h-7 w-auto max-w-[160px] object-contain transition-opacity duration-300 ${logoLoaded ? 'block opacity-100' : 'hidden'}`}
-                    onLoad={() => setLogoLoaded(true)}
-                    onError={() => setLogoError(true)}
-                  />
-                )}
-                
-                {/* Visual Placeholder when image is not present */}
-                {(!logoLoaded || logoError) && (
-                  <div className="flex items-center gap-3 select-none">
-                    {/* Stylized Nordic Geometry Icon for NAM */}
-                    <div className="w-8 h-8 rounded bg-[#11191F] border border-slate-600 flex items-center justify-center shadow-inner">
-                      <span className="font-serif font-black text-sm tracking-tighter text-[#D97746]">
-                        NAM
-                      </span>
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="font-mono text-xs font-bold tracking-widest text-[#F5F2EB] uppercase">
-                        NAM PRODUCTS
-                      </span>
-                      <span className="text-[10px] text-slate-400 font-mono">
-                        Scandinavian Performance Fly Fishing
-                      </span>
-                    </div>
-                  </div>
-                )}
-
-                {/* Subtle corner badge for asset placement */}
-                <span className="absolute -top-2 -right-2 px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-[#2D4A3E] text-[#F5F2EB] border border-[#3E6554] shadow-sm uppercase tracking-wider">
-                  Official Partner
-                </span>
-              </div>
-
-              {/* Secondary Co-Partner Badge */}
-              <div className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-800/50 border border-slate-700/50 text-xs font-mono text-slate-300">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#D97746]" />
-                <span>Einarsson Reels • Iceland</span>
+            {/* NAM LOGO ONLY */}
+            <div className="flex items-center pt-1">
+              <div className="px-4 py-2 rounded-lg bg-[#18232A] border border-slate-700/80 hover:border-[#D97746]/50 shadow-md transition-all duration-300">
+                <img 
+                  src="/nam-products_logo_CMYK_white.jpg" 
+                  alt="NAM Products" 
+                  className="h-8 w-auto max-w-[140px] object-contain"
+                />
               </div>
             </div>
 
             {/* Headline */}
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-white leading-tight font-normal pt-1">
-              Equipped by NAM Products & Einarsson Reels
+              Equipped by NAM Products
             </h2>
 
             {/* Subhead / Lead */}
@@ -118,7 +79,7 @@ export const GearBanner: React.FC<GearBannerProps> = ({ className = '', onNaviga
 
           </div>
 
-          {/* RIGHT COLUMN: 3 Focused Feature Cards (5 cols on desktop) */}
+          {/* RIGHT COLUMN: 3 Feature Cards (Rods, Lines, Reels) */}
           <div className="lg:col-span-5 space-y-4">
             
             {/* Card 1: Rods */}
