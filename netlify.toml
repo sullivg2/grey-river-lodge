@@ -1,6 +1,7 @@
 [build]
-  command = "cd app/applet && npm install && npm run build"
-  publish = "app/applet/dist"
+  base = "app/applet"
+  publish = "dist"
+  command = "npm run build"
 
 [[redirects]]
   from = "/api/river-gauge"
