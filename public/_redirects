@@ -1,2 +1,13 @@
-/api/river-gauge  https://dd.weather.gc.ca/today/hydrometric/csv/NL/hourly/NL_02ZD002_hourly_hydrometric.csv  200!
-/*  /index.html  200
+# Explicit SPA routing - whitelist known routes to prevent open redirects
+/home /index.html 200
+/the-fishery /index.html 200
+/accommodations /index.html 200
+/rates /index.html 200
+/getting-here /index.html 200
+/contact /index.html 200
+
+# Explicit ECCC river gauge proxy (Netlify-controlled, SSRF-safe)
+/api/river-gauge https://dd.weather.gc.ca/today/hydrometric/csv/NL/hourly/NL_02ZD002_hourly_hydrometric.csv 200!
+
+# Catch-all with 404 (prevents open redirects)
+/* /404.html 404

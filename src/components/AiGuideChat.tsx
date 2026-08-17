@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send, Bot, Sparkles, User, ExternalLink, Linkedin, Compass, CheckCircle2 } from 'lucide-react';
-import { GoogleGenAI } from '@google/genai';
+import DOMPurify from 'dompurify';
 
 interface ChatMessage {
   id: string;
@@ -64,21 +64,22 @@ CONSTRAINTS:
     setIsLoading(true);
 
     try {
-      // Try using Google GenAI SDK if key is available in environment
-      // @ts-ignore
-      const apiKey = process.env.GEMINI_API_KEY || (import.meta as any).env?.VITE_GEMINI_API_KEY || '';
+      // Call server-side Netlify function to safely process Gemini API request
       let replyText = '';
 
-      if (apiKey) {
-        const ai = new GoogleGenAI({ apiKey });
-        const response = await ai.models.generateContent({
-          model: 'gemini-2.5-flash',
-          contents: userText,
-          config: {
-            systemInstruction
-          }
+      try {
+        const response = await fetch('/.netlify/functions/generate-content', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userText, systemInstruction })
         });
-        replyText = response.text || '';
+
+        if (response.ok) {
+          const data = await response.json();
+          replyText = data.reply || '';
+        }
+      } catch (fetchErr) {
+        console.error('Error calling Gemini API:', fetchErr);
       }
 
       if (!replyText) {
@@ -97,10 +98,13 @@ CONSTRAINTS:
         }
       }
 
+      // Sanitize response to prevent XSS (only allow plain text, no HTML)
+      const sanitizedReply = DOMPurify.sanitize(replyText, { ALLOWED_TAGS: [] });
+
       const botMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
         sender: 'assistant',
-        text: replyText.trim(),
+        text: sanitizedReply.trim(),
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
 
@@ -156,7 +160,7 @@ CONSTRAINTS:
                 <p className="text-[10px] text-[#F5F2EB]/60">Sales Engineer & Outfitting Mindset</p>
               </div>
             </div>
-
+/in/your-profile
             <div className="flex items-center gap-2">
               <a
                 href="https://www.linkedin.com"

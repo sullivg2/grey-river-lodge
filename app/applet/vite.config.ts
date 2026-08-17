@@ -31,6 +31,23 @@ export default defineConfig(() => {
           target: 'https://dd.weather.gc.ca',
           changeOrigin: true,
           rewrite: () => '/today/hydrometric/csv/NL/hourly/NL_02ZD002_hourly_hydrometric.csv',
+          // Security: Validate response content type and limit size
+          onProxyRes: (proxyRes, req, res) => {
+            // Only accept CSV responses
+            if (!proxyRes.headers['content-type']?.includes('text/csv')) {
+              res.writeHead(400);
+              res.end('Invalid content type');
+              return;
+            }
+            // Limit response size to 1MB
+            let size = 0;
+            proxyRes.on('data', (chunk) => {
+              size += chunk.length;
+              if (size > 1024 * 1024) {
+                res.destroy();
+              }
+            });
+          }
         },
       },
     },

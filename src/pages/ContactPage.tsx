@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import DOMPurify from 'dompurify';
 import { 
   Send, 
   CheckCircle2, 
@@ -48,14 +49,68 @@ export const ContactPage: React.FC<ContactPageProps> = ({ initialData }) => {
     }
   }, [initialData]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    // If running in static Netlify environment, form will submit via POST naturally.
-    // In preview React environment, provide immediate confirmation UI:
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const refCode = `GRL-${Math.floor(100000 + Math.random() * 900000)}`;
-    setInquiryRef(refCode);
-    setSubmitted(true);
-    window.scrollTo({ top: 120, behavior: 'smooth' });
+
+    // Input validation and sanitization
+    const errors: string[] = [];
+    
+    if (!formData.name.trim() || formData.name.length > 100) {
+      errors.push('Name must be 1-100 characters');
+    }
+    
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.push('Invalid email format');
+    }
+    
+    if (!/^\d{10,}$/.test(formData.phone.replace(/\D/g, ''))) {
+      errors.push('Phone must be at least 10 digits');
+    }
+    
+    if (formData.notes.length > 2000) {
+      errors.push('Notes must be under 2000 characters');
+    }
+
+    if (errors.length > 0) {
+      alert(errors.join('\n'));
+      return;
+    }
+
+    // Rate limiting (client-side, also implement server-side in function)
+    const lastSubmit = localStorage.getItem('lastFormSubmit');
+    const now = Date.now();
+    if (lastSubmit && (now - parseInt(lastSubmit)) < 5000) {
+      alert('Please wait 5 seconds between submissions');
+      return;
+    }
+
+    try {
+      // Generate reference code server-side for better security
+      const refResponse = await fetch('/.netlify/functions/generate-reference', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      });
+
+      if (!refResponse.ok) {
+        throw new Error('Failed to generate reference code');
+      }
+
+      const refData = await refResponse.json();
+      const refCode = refData.refCode || `GRL-${Math.floor(100000 + Math.random() * 900000)}`;
+      
+      setInquiryRef(refCode);
+      setSubmitted(true);
+      localStorage.setItem('lastFormSubmit', now.toString());
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    } catch (err) {
+      console.error('Error generating reference:', err);
+      // Fallback: generate locally
+      const refCode = `GRL-${Math.floor(100000 + Math.random() * 900000)}`;
+      setInquiryRef(refCode);
+      setSubmitted(true);
+      localStorage.setItem('lastFormSubmit', now.toString());
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
   };
 
   const handleCopyRef = () => {
