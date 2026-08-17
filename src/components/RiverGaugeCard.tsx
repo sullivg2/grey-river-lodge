@@ -1,45 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { 
   fetchLiveGreyRiverGauge, 
+  fetchLiveGreyRiverWeather,
   RiverGaugeReading, 
-  DEFAULT_GAUGE_DATA 
+  GreyRiverWeather,
+  DEFAULT_GAUGE_DATA,
+  DEFAULT_WEATHER_DATA
 } from '../services/riverGaugeService';
 import { 
-  Activity, 
   ExternalLink, 
   RefreshCw, 
-  TrendingUp, 
-  TrendingDown, 
-  Minus, 
-  ShieldCheck, 
   Waves, 
   Droplets, 
-  Thermometer, 
-  Compass,
+  Compass, 
   CheckCircle2,
-  Calendar
+  CloudSun,
+  Wind
 } from 'lucide-react';
 
 export const RiverGaugeCard: React.FC = () => {
   const [gauge, setGauge] = useState<RiverGaugeReading>(DEFAULT_GAUGE_DATA);
+  const [weather, setWeather] = useState<GreyRiverWeather>(DEFAULT_WEATHER_DATA);
   const [loading, setLoading] = useState<boolean>(true);
   const [lastRefreshed, setLastRefreshed] = useState<string>('');
 
-  const loadGaugeData = async () => {
+  const loadAllData = async () => {
     setLoading(true);
     try {
-      const data = await fetchLiveGreyRiverGauge();
-      setGauge(data);
+      const [gaugeResult, weatherResult] = await Promise.all([
+        fetchLiveGreyRiverGauge(),
+        fetchLiveGreyRiverWeather()
+      ]);
+      setGauge(gaugeResult);
+      setWeather(weatherResult);
       setLastRefreshed(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
     } catch {
-      // Handled in service
+      // Handled in services
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    loadGaugeData();
+    loadAllData();
   }, []);
 
   return (
@@ -54,11 +57,11 @@ export const RiverGaugeCard: React.FC = () => {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
             </span>
             <span className="text-[11px] font-mono uppercase tracking-widest text-emerald-400 font-bold">
-              Official Hydrometric Feed
+              Official Hydrometric & Live Weather Feed
             </span>
           </div>
           <h3 className="text-2xl font-serif text-white mt-1">
-            Grey River Real-Time Stream Gauge
+            Grey River Real-Time Stream Gauge & Weather
           </h3>
           <p className="text-xs text-[#F5F2EB]/70 mt-0.5">
             Station ID: <strong className="text-[#D97746] font-mono">02ZD002</strong> • Environment & Climate Change Canada / Water Survey of Canada
@@ -67,7 +70,7 @@ export const RiverGaugeCard: React.FC = () => {
 
         <div className="flex items-center gap-3">
           <button
-            onClick={loadGaugeData}
+            onClick={loadAllData}
             disabled={loading}
             className="flex items-center gap-1.5 bg-[#263B46] hover:bg-[#324d5b] text-white text-xs font-semibold px-3 py-1.5 rounded transition cursor-pointer"
           >
@@ -143,21 +146,22 @@ export const RiverGaugeCard: React.FC = () => {
           </div>
         </div>
 
-        {/* Metric 4: Estimated Water Temp */}
+        {/* Metric 4: Real Live Fjord Weather */}
         <div className="bg-[#0B1014] p-5 rounded-lg border border-[#263B46] space-y-2">
           <div className="flex items-center justify-between text-xs text-[#F5F2EB]/70">
             <span className="uppercase font-semibold tracking-wider flex items-center gap-1.5">
-              <Thermometer className="w-4 h-4 text-[#D97746]" />
-              Water Temperature
+              <CloudSun className="w-4 h-4 text-[#D97746]" />
+              Fjord Weather
             </span>
-            <span className="font-mono text-[10px] text-[#D97746]">Thermal</span>
+            <span className="font-mono text-[10px] text-[#D97746]">{weather.conditionText}</span>
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-bold font-mono text-white">{gauge.temperatureEstimateF}°</span>
-            <span className="text-sm font-mono text-[#F5F2EB]/60">F ({gauge.temperatureEstimateC}°C)</span>
+            <span className="text-3xl font-bold font-mono text-white">{weather.temperatureC}°</span>
+            <span className="text-sm font-mono text-[#F5F2EB]/60">C ({weather.temperatureF}°F)</span>
           </div>
-          <div className="text-xs text-emerald-400 font-mono font-semibold">
-            ✓ Optimal Dry Fly Bomber Range
+          <div className="text-xs text-slate-400 font-mono flex items-center gap-1">
+            <Wind className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+            <span>Wind: {weather.windSpeedKmh} km/h ({weather.windSpeedMph} mph)</span>
           </div>
         </div>
 
@@ -167,7 +171,7 @@ export const RiverGaugeCard: React.FC = () => {
       <div className="px-6 py-4 bg-[#0B1014]/60 border-t border-[#263B46] flex flex-col sm:flex-row justify-between items-center text-[11px] text-[#F5F2EB]/60 gap-2">
         <div className="flex items-center gap-2">
           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-          <span>Real-time hourly CSV stream direct from ECCC Datamart / Water Survey of Canada</span>
+          <span>Real-time hourly CSV stream (ECCC Datamart 02ZD002) & Live Fjord Weather</span>
         </div>
         <div>
           {lastRefreshed ? `Last polled at ${lastRefreshed}` : 'Live synchronization active'}

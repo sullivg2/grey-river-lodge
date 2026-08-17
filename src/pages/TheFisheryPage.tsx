@@ -5,15 +5,9 @@ import { FlyBoxExplorer } from '../components/FlyBoxExplorer';
 import { RiverGaugeCard } from '../components/RiverGaugeCard';
 import { PhotoGalleryShowcase } from '../components/PhotoGalleryShowcase';
 import { 
-  Waves, 
-  Fish, 
   ShieldCheck, 
   Sparkles, 
-  Eye, 
-  Compass, 
-  ArrowRight, 
-  Droplets, 
-  Calendar 
+  Compass 
 } from 'lucide-react';
 
 interface TheFisheryPageProps {
@@ -24,20 +18,58 @@ export const TheFisheryPage: React.FC<TheFisheryPageProps> = ({ onNavigate }) =>
   return (
     <div className="py-16 sm:py-20 bg-[#F5F2EB] space-y-20">
       
-      {/* Top Header */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        
-        <div className="space-y-4 mb-12">
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#D97746] font-bold bg-[#D97746]/10 px-3 py-1 rounded-full border border-[#D97746]/20">
-            <Compass className="w-3.5 h-3.5" />
-            <span>Newfoundland's Most Remote Salmon River • Helicopter Access Only</span>
+      {/* Top Header — 2-Column Editorial Layout */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start mb-16">
+          
+          {/* LEFT COLUMN: Title & Lead Hook (7 Cols) */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#D97746] font-bold bg-[#D97746]/10 px-3.5 py-1.5 rounded-full border border-[#D97746]/25">
+              <Compass className="w-3.5 h-3.5" />
+              <span>Newfoundland's Most Remote Salmon River</span>
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#11191F] tracking-tight leading-[1.1]">
+              The Grey River: <br />
+              <span className="italic font-light text-[#2D4A3E]">Wild Water, Untamed Salmon</span>
+            </h1>
+
+            <p className="text-lg sm:text-xl text-slate-800 font-normal leading-relaxed">
+              Carving a dramatic path through the rugged, roadless wilderness of southern Newfoundland, the Grey River is one of Atlantic Canada’s most pristine and secluded river systems. Flanked by towering granite canyon walls, ancient boreal barrens, and deep coastal fjords, the river flows through a dramatic glacial landscape that has remained largely untouched by the modern world.
+            </p>
+
+            {/* Quick River Attribute Badges */}
+            <div className="flex flex-wrap gap-2.5 pt-2">
+              <span className="text-xs font-mono bg-white border border-slate-300 text-slate-700 px-3 py-1.5 rounded-md shadow-2xs">
+                🚁 Helicopter Access Only
+              </span>
+              <span className="text-xs font-mono bg-white border border-slate-300 text-slate-700 px-3 py-1.5 rounded-md shadow-2xs">
+                🧭 Zero Road Pressure
+              </span>
+              <span className="text-xs font-mono bg-white border border-slate-300 text-slate-700 px-3 py-1.5 rounded-md shadow-2xs">
+                👀 World-Class Sight Fishing
+              </span>
+            </div>
           </div>
-          <h1 className="text-4xl sm:text-6xl font-serif text-[#11191F]">
-            The Grey River Fishery
-          </h1>
-          <p className="text-lg text-slate-700 leading-relaxed max-w-3xl">
-            Carving its way through dramatic coastal fjords on Newfoundland's roadless south coast, the Grey River system offers cold, crystal-clear water with world-class sight fishing for hard-fighting wild Atlantic salmon and trophy sea-run brook trout.
-          </p>
+
+          {/* RIGHT COLUMN: The Fishery Character & Solitude (5 Cols Card) */}
+          <div className="lg:col-span-5 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/90 shadow-sm space-y-4">
+            <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
+              <span className="h-2 w-2 rounded-full bg-[#D97746]" />
+              <span className="text-xs font-mono uppercase tracking-wider font-bold text-slate-500">
+                The Fishery Dynamic
+              </span>
+            </div>
+
+            <p className="text-sm text-slate-600 leading-relaxed">
+              What truly defines the Grey River is its prolific, ocean-fresh Atlantic salmon fishery. Fed by cold-water tributaries and dramatic tides entering the fjord, the river offers miles of classic freestone holding pools, glassy tailouts, and tumbling rapids. Beginning in late June and continuing through August, hard-fighting wild Atlantic salmon and trophy sea-run brook trout push upstream with every tide.
+            </p>
+
+            <p className="text-sm text-slate-600 leading-relaxed">
+              The river’s exceptional water clarity makes it a world-class destination for sight-fishing, where anglers can watch sea-bright fish rise from deep holding lies to engulf surface-waking Bombers or track traditional wet flies swung through classic spey runs—a timeless destination for the authentic spirit of northern fly fishing.
+            </p>
+          </div>
+
         </div>
 
         {/* Live ECCC Station 02ZD002 Hydrometric Gauge Card */}
@@ -108,7 +140,7 @@ export const TheFisheryPage: React.FC<TheFisheryPageProps> = ({ onNavigate }) =>
           />
         </div>
 
-        {/* Recommended Tackle & Gear Specs (from prompt) */}
+        {/* Recommended Tackle & Gear Specs */}
         <div className="bg-[#11191F] text-white p-8 sm:p-12 rounded-xl shadow-xl space-y-8 border border-[#263B46]">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[#263B46] pb-6">
             <div>

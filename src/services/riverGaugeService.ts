@@ -8,11 +8,19 @@ export interface RiverGaugeReading {
   trend: 'rising' | 'falling' | 'stable';
   flowClassification: 'Low & Clear' | 'Prime Medium Flow' | 'High Fresh Run';
   clarityEstimate: string;
-  temperatureEstimateC: number;
-  temperatureEstimateF: number;
   isRealTime: boolean;
   stationId: string;
   stationName: string;
+}
+
+export interface GreyRiverWeather {
+  temperatureC: number;
+  temperatureF: number;
+  windSpeedKmh: number;
+  windSpeedMph: number;
+  weatherCode: number;
+  conditionText: string;
+  isRealTime: boolean;
 }
 
 // Fallback baseline for station 02ZD002 (Grey River)
@@ -26,12 +34,32 @@ export const DEFAULT_GAUGE_DATA: RiverGaugeReading = {
   trend: 'stable',
   flowClassification: 'Prime Medium Flow',
   clarityEstimate: 'Crystal Clear (10+ ft)',
-  temperatureEstimateC: 13.3,
-  temperatureEstimateF: 56.0,
   isRealTime: false,
   stationId: '02ZD002',
   stationName: 'Grey River Station 02ZD002 (ECCC)'
 };
+
+export const DEFAULT_WEATHER_DATA: GreyRiverWeather = {
+  temperatureC: 16,
+  temperatureF: 61,
+  windSpeedKmh: 14,
+  windSpeedMph: 9,
+  weatherCode: 2,
+  conditionText: 'Partly Cloudy',
+  isRealTime: false
+};
+
+// Maps WMO standard weather codes to readable conditions
+function getWeatherCondition(code: number): string {
+  if (code === 0) return 'Clear Skies';
+  if (code === 1 || code === 2) return 'Partly Cloudy';
+  if (code === 3) return 'Overcast';
+  if (code >= 45 && code <= 48) return 'Coastal Fog';
+  if (code >= 51 && code <= 55) return 'Light Drizzle';
+  if (code >= 61 && code <= 65) return 'Rain Showers';
+  if (code >= 80 && code <= 82) return 'Heavy Showers';
+  return 'Passing Clouds';
+}
 
 /**
  * Parses CSV lines from Environment and Climate Change Canada (ECCC)
@@ -68,10 +96,6 @@ export function parseEcccCsv(csvText: string): RiverGaugeReading[] {
         clarity = 'Light Peat Tint (6-8 ft)';
       }
 
-      // Est temp based on sub-Arctic summer baseline (12 - 15 C depending on discharge / solar)
-      const tempC = 13.5 - Math.min(2, Math.max(-1, (validDischarge - 19) * 0.05));
-      const tempF = (tempC * 9/5) + 32;
-
       let formattedTime = rawDate;
       try {
         const d = new Date(rawDate);
@@ -90,8 +114,6 @@ export function parseEcccCsv(csvText: string): RiverGaugeReading[] {
         trend: 'stable',
         flowClassification,
         clarityEstimate: clarity,
-        temperatureEstimateC: Number(tempC.toFixed(1)),
-        temperatureEstimateF: Number(tempF.toFixed(1)),
         isRealTime: true,
         stationId,
         stationName: 'Grey River (02ZD002) - Water Survey of Canada'
@@ -122,10 +144,9 @@ export function parseEcccCsv(csvText: string): RiverGaugeReading[] {
 export async function fetchLiveGreyRiverGauge(): Promise<RiverGaugeReading> {
   const directUrl = 'https://dd.weather.gc.ca/today/hydrometric/csv/NL/hourly/NL_02ZD002_hourly_hydrometric.csv';
   
-  // Only use Netlify edge rewrite or direct ECCC (remove public CORS proxies for SSRF mitigation)
   const fetchUrls = [
-    '/api/river-gauge', // ✅ Netlify-controlled proxy only
-    directUrl           // ✅ Direct to ECCC (government source)
+    '/api/river-gauge',
+    directUrl
   ];
 
   for (const url of fetchUrls) {
@@ -151,6 +172,43 @@ export async function fetchLiveGreyRiverGauge(): Promise<RiverGaugeReading> {
     }
   }
 
-  // Return realistic default if telemetry network is unavailable
   return DEFAULT_GAUGE_DATA;
+}
+
+/**
+ * Fetches live weather conditions directly using Environment Canada's High-Resolution GEM Model
+ * Location: Grey River, NL (Lat 47.58°N, Lon -57.11°W)
+ */
+export async function fetchLiveGreyRiverWeather(): Promise<GreyRiverWeather> {
+  // Uses Environment Canada GEM endpoint to match official Canadian meteorological observations
+  const url = 'https://api.open-meteo.com/v1/gem?latitude=47.58&longitude=-57.11&current=temperature_2m,weather_code,wind_speed_10m&timezone=America%2FSt_Johns';
+
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 4000);
+
+    const res = await fetch(url, { signal: controller.signal });
+    clearTimeout(timeoutId);
+
+    if (!res.ok) throw new Error('Weather API error');
+    const data = await res.json();
+
+    const tempC = Math.round(data.current.temperature_2m);
+    const tempF = Math.round((tempC * 9/5) + 32);
+    const windKmh = Math.round(data.current.wind_speed_10m);
+    const windMph = Math.round(windKmh * 0.621371);
+    const code = data.current.weather_code;
+
+    return {
+      temperatureC: tempC,
+      temperatureF: tempF,
+      windSpeedKmh: windKmh,
+      windSpeedMph: windMph,
+      weatherCode: code,
+      conditionText: getWeatherCondition(code),
+      isRealTime: true
+    };
+  } catch {
+    return DEFAULT_WEATHER_DATA;
+  }
 }
