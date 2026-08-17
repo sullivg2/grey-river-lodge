@@ -19,7 +19,7 @@ export const PhotoGalleryShowcase: React.FC<PhotoGalleryShowcaseProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string>(filterCategory || 'All');
   const [activePhoto, setActivePhoto] = useState<LodgePhoto | null>(null);
 
-  const categories = ['All', 'Lodge & Grounds', 'The Fishery', 'Trophy Catches', 'Wilderness & Wildlife'];
+  const categories = ['All', 'Lodge & Grounds', 'The Fishery', 'Accommodations', 'Wilderness & Wildlife'];
 
   const filteredPhotos = LODGE_PHOTOS.filter(photo => {
     if (filterCategory) return photo.category === filterCategory;

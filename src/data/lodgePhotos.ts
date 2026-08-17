@@ -2,7 +2,7 @@ export interface LodgePhoto {
   id: string;
   filename: string;
   title: string;
-  category: 'Lodge & Grounds' | 'The Fishery' | 'Wilderness & Wildlife' | 'Trophy Catches';
+  category: 'Lodge & Grounds' | 'The Fishery' | 'Wilderness & Wildlife' | 'Accommodations';
   caption: string;
   locationTag: string;
   aspect: 'landscape' | 'portrait' | 'wide';
@@ -12,104 +12,145 @@ export interface LodgePhoto {
   featuredInFishery?: boolean;
 }
 
-/**
- * GREY RIVER LODGE PHOTO REGISTRY
- * 
- * To add new photos:
- * 1. Place the photo file in your repository's `public/` folder (e.g. `public/my-photo.jpg`).
- * 2. Add an object to the LODGE_PHOTOS array below with `filename: 'my-photo.jpg'`.
- */
 export const LODGE_PHOTOS: LodgePhoto[] = [
+  // --- LODGE & GROUNDS ---
   {
-    id: 'lodge-compound-helipad',
-    filename: '9c19e13a-dc5e-4fb2-b418-46dd08758383.JPG',
-    title: 'Main Lodge & Heli Landing Pad',
+    id: 'lodge-exterior-front',
+    filename: '/lodge1.jpg',
+    title: 'Main Lodge & Timber Compound',
     category: 'Lodge & Grounds',
-    caption: 'Handcrafted timber compound with green metal roof, wrap-around cedar deck, and private helicopter staging deck overlooking the south coast mountains.',
-    locationTag: 'Grey River Lodge Compound',
+    caption: 'Front exterior perspective of the handcrafted timber lodge and private compound nestled in the Newfoundland wilderness.',
+    locationTag: 'Main Compound',
     aspect: 'wide',
-    fallbackUrl: 'https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=1600&q=80',
     featuredInHero: true,
     featuredInAccommodations: true
   },
   {
-    id: 'lodge-porch-waders',
-    filename: '5e93c486-9c74-495a-9a28-c445f6057ecb.JPG',
-    title: 'Covered Porch & River Walkway',
+    id: 'lodge-deck-view',
+    filename: '/lodge2.jpg',
+    title: 'Lodge Veranda & Grounds',
     category: 'Lodge & Grounds',
-    caption: 'Morning perspective from the main lodge veranda with waders and wading jackets drying on cedar log railings above the river boardwalk.',
+    caption: 'Handcrafted log columns overlooking the compound and surrounding river valley.',
     locationTag: 'Main Lodge Veranda',
     aspect: 'wide',
-    fallbackUrl: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80',
     featuredInAccommodations: true
   },
   {
-    id: 'aerial-canyon-bend',
-    filename: '978e6597-fdc6-4843-af1a-970dfda810b1.JPG',
-    title: 'Grey River Horseshoe Bend & Rapids',
-    category: 'The Fishery',
-    caption: 'Aerial panorama of the wild river bend, showing deep peat-tinted holding pools, granite boulder lines, and virgin boreal pine forest.',
-    locationTag: 'Canyon Pool / Lower Rapids',
-    aspect: 'wide',
-    fallbackUrl: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1600&q=80',
-    featuredInHero: true,
-    featuredInFishery: true
-  },
-  {
-    id: 'aerial-upstream-rapids',
-    filename: 'IMG_8659.jpeg',
-    title: 'Upper Canyon Terraces & Holding Pools',
-    category: 'The Fishery',
-    caption: 'Elevated view along the granite ledges of Grey River where ascending salmon rest in crystal pools between fast-water chutes.',
-    locationTag: 'Upper River Canyon',
-    aspect: 'portrait',
-    fallbackUrl: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=1600&q=80',
-    featuredInFishery: true
-  },
-  {
-    id: 'salmon-bamboo-rod',
-    filename: 'ed1f8b33-97b4-43ca-bf16-20a038935398.JPG',
-    title: 'Fresh Run Atlantic Salmon & Bamboo Fly Rod',
-    category: 'Trophy Catches',
-    caption: 'A gleaming sea-fresh silver Atlantic salmon resting in shallow gin-clear river current beside a handcrafted bamboo fly rod.',
-    locationTag: 'Gravel Run Holding Pool',
-    aspect: 'portrait',
-    fallbackUrl: 'https://images.unsplash.com/photo-1535557142533-b5e1cc6e2a5d?auto=format&fit=crop&w=1600&q=80',
-    featuredInHero: true,
-    featuredInFishery: true
-  },
-  {
-    id: 'angler-trophy-catch',
-    filename: 'IMG_8661.jpeg',
-    title: 'Fresh Salmon Landed on the Granite Riverbed',
-    category: 'Trophy Catches',
-    caption: 'A triumphant angler holding a bright Atlantic salmon hooked on a dry fly in the rushing waters of Grey River.',
-    locationTag: 'Rapid Chute Pool',
-    aspect: 'landscape',
-    fallbackUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80',
-    featuredInHero: true,
-    featuredInFishery: true
-  },
-  {
-    id: 'wildlife-caribou-river',
-    filename: 'e8f43565-4363-4259-9293-1b212d6dc1f2.JPG',
-    title: 'Woodland Caribou in the River Shallows',
-    category: 'Wilderness & Wildlife',
-    caption: 'A magnificent wild Woodland Caribou stag cooling off in the crystal-clear waters of the Grey River watershed.',
-    locationTag: 'Upper Shallows Corridor',
-    aspect: 'portrait',
-    fallbackUrl: 'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=1600&q=80',
-    featuredInFishery: true
-  },
-  {
-    id: 'lodge-porch-pillars',
-    filename: 'IMG_8660.jpeg',
-    title: 'Cedar Log Veranda & Mountain Vista',
+    id: 'lodge-view-exterior',
+    filename: '/lodge-view.JPG',
+    title: 'Timber Lodge Wilderness Setting',
     category: 'Lodge & Grounds',
-    caption: 'Sunlit afternoon on the covered porch with handcrafted log columns overlooking the boardwalk to the river.',
-    locationTag: 'Riverfront Deck',
-    aspect: 'portrait',
-    fallbackUrl: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1600&q=80',
+    caption: 'Elevated view of the main timber lodge structure set against the rugged boreal landscape.',
+    locationTag: 'Main Compound',
+    aspect: 'landscape',
+    featuredInHero: true
+  },
+  {
+    id: 'lodge-boardwalk-compound',
+    filename: '/lodge-view2.jpeg',
+    title: 'Riverfront Boardwalk & Grounds',
+    category: 'Lodge & Grounds',
+    caption: 'Handcrafted boardwalk trail connecting the accommodations and lodge directly to the river.',
+    locationTag: 'Riverfront Boardwalk',
+    aspect: 'wide',
     featuredInAccommodations: true
+  },
+  {
+    id: 'lodge-helipad-transfer',
+    filename: '/helipad.JPG',
+    title: 'Private Wilderness Helipad',
+    category: 'Lodge & Grounds',
+    caption: 'Dedicated on-site helicopter landing pad for private air transfers directly to the lodge.',
+    locationTag: 'Lodge Helipad',
+    aspect: 'wide',
+    featuredInHero: true
+  },
+
+  // --- ACCOMMODATIONS ---
+  {
+    id: 'cabin-bedroom-twin-beds',
+    filename: '/bedroom1.jpg',
+    title: 'Guest Suite — Twin Accommodations',
+    category: 'Accommodations',
+    caption: 'Comfortable guest bedroom with twin beds, crisp linens, and warm pine interiors.',
+    locationTag: 'Guest Cabin',
+    aspect: 'landscape',
+    featuredInAccommodations: true
+  },
+  {
+    id: 'cabin-bedroom-double',
+    filename: '/bedroom2.jpg',
+    title: 'Guest Suite — Private Double Room',
+    category: 'Accommodations',
+    caption: 'Private double guest room designed for rest and comfort after long days on the water.',
+    locationTag: 'Guest Cabin',
+    aspect: 'landscape',
+    featuredInAccommodations: true
+  },
+  {
+    id: 'cabin-living-area-lounge',
+    filename: '/lodgeliving.jpg',
+    title: 'Cabin Lounge & Common Sitting Area',
+    category: 'Accommodations',
+    caption: 'Spacious sitting lounge featuring comfortable furnishings for unwinding between morning and evening beats.',
+    locationTag: 'Cabin Living Area',
+    aspect: 'wide',
+    featuredInAccommodations: true
+  },
+
+  // --- THE FISHERY ---
+  {
+    id: 'salmon-bamboo-presentation',
+    filename: '/salmon-bamboo.JPG',
+    title: 'Fresh Sea-Run Atlantic Salmon',
+    category: 'The Fishery',
+    caption: 'Pristine silver Atlantic salmon brought to hand along the rocky granite shelves of Grey River.',
+    locationTag: 'Lower Home Pool',
+    aspect: 'landscape',
+    featuredInHero: true,
+    featuredInFishery: true
+  },
+  {
+    id: 'salmon-release-action',
+    filename: '/salmon2.jpeg',
+    title: 'Salmon Action & Release',
+    category: 'The Fishery',
+    caption: 'Clean fight and careful handling in crystal-clear waters before release.',
+    locationTag: 'Grey River Canyon',
+    aspect: 'landscape',
+    featuredInFishery: true
+  },
+  {
+    id: 'river-drone-aerial',
+    filename: '/riverdrone2.jpeg',
+    title: 'Grey River Canyon & Rapids Aerial',
+    category: 'The Fishery',
+    caption: 'Aerial panorama capturing the oxygenated rapids and secluded holding pools carving through granite bedrock.',
+    locationTag: 'Upper Canyon Beats',
+    aspect: 'wide',
+    featuredInHero: true,
+    featuredInFishery: true
+  },
+  {
+    id: 'rover-drone-watershed',
+    filename: '/rover-drone.JPG',
+    title: 'Remote Watershed Corridor',
+    category: 'The Fishery',
+    caption: 'Sweeping aerial perspective of the untouched wilderness and remote river corridor.',
+    locationTag: 'Grey River Watershed',
+    aspect: 'wide',
+    featuredInFishery: true
+  },
+
+  // --- WILDERNESS & WILDLIFE ---
+  {
+    id: 'woodland-caribou-wildlife',
+    filename: '/caribou.JPG',
+    title: 'Native Woodland Caribou',
+    category: 'Wilderness & Wildlife',
+    caption: 'Wild woodland caribou roaming the pristine Newfoundland tundra near the lodge.',
+    locationTag: 'South Coast Highlands',
+    aspect: 'landscape',
+    featuredInHero: true
   }
 ];
