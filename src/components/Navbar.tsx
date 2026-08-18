@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PageId } from '../types';
-import { Menu, X, Compass, PhoneCall, Waves, ShieldCheck } from 'lucide-react';
+import { Menu, X, Compass, PhoneCall, Waves, ShieldCheck, ShoppingBag } from 'lucide-react';
 
 interface NavbarProps {
   currentPage: PageId;
@@ -19,12 +19,14 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Tightened label names to prevent awkward 2-line wraps
   const navItems: { id: PageId; name: string }[] = [
     { id: 'home', name: 'Home' },
-    { id: 'the-fishery', name: 'The Fishery' },
+    { id: 'the-fishery', name: 'Fishery' },
     { id: 'accommodations', name: 'Accommodations' },
-    { id: 'rates', name: 'Rates & Inclusions' },
-    { id: 'getting-here', name: 'Getting Here' }
+    { id: 'rates', name: 'Rates' },
+    { id: 'getting-here', name: 'Getting Here' },
+    { id: 'fly-shop', name: 'Fly Shop' },
   ];
 
   const handleNavClick = (page: PageId) => {
@@ -74,57 +76,60 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
         } text-white`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-20 gap-4">
             
             {/* Brand Logo */}
             <button
               onClick={() => handleNavClick('home')}
-              className="flex flex-col text-left group cursor-pointer focus:outline-none"
+              className="flex flex-col text-left group cursor-pointer focus:outline-none shrink-0"
             >
               <div className="flex items-center gap-2">
                 <Compass className="w-6 h-6 text-[#D97746] transition-transform group-hover:rotate-45" />
-                <span className="font-serif text-2xl font-bold tracking-wider text-white">
+                <span className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-white">
                   GREY RIVER
                 </span>
               </div>
-              <span className="text-[10px] tracking-[0.22em] text-[#D97746] uppercase font-medium pl-8">
+              <span className="text-[9px] sm:text-[10px] tracking-[0.2em] text-[#D97746] uppercase font-medium pl-8 hidden sm:block">
                 Most Remote Salmon Lodge • Newfoundland
               </span>
             </button>
 
-            {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center space-x-7">
+            {/* Desktop Nav with whitespace-nowrap */}
+            <nav className="hidden lg:flex items-center space-x-5 xl:space-x-7 shrink-0">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`text-sm font-medium transition-colors cursor-pointer py-1 ${
+                  className={`text-xs xl:text-sm font-medium transition-colors cursor-pointer py-1.5 whitespace-nowrap flex items-center gap-1.5 ${
                     currentPage === item.id
                       ? 'text-[#D97746] font-semibold border-b-2 border-[#D97746]'
                       : 'text-[#F5F2EB]/80 hover:text-[#D97746]'
                   }`}
                 >
-                  {item.name}
+                  {item.id === 'fly-shop' && (
+                    <ShoppingBag className="w-3.5 h-3.5 text-[#D97746]" />
+                  )}
+                  <span>{item.name}</span>
                 </button>
               ))}
             </nav>
 
-            {/* Primary Action Buttons */}
-            <div className="hidden lg:flex items-center gap-3">
+            {/* Primary Action Button */}
+            <div className="hidden lg:flex items-center shrink-0">
               <button
                 onClick={() => handleNavClick('contact')}
-                className="bg-[#D97746] hover:bg-[#C26334] text-white text-xs font-semibold uppercase tracking-wider px-5 py-3 rounded shadow-md transition-all duration-200 cursor-pointer flex items-center gap-2"
+                className="bg-[#D97746] hover:bg-[#C26334] text-white text-xs font-semibold uppercase tracking-wider px-4 py-2.5 xl:px-5 xl:py-3 rounded shadow-md transition-all duration-200 cursor-pointer flex items-center gap-2 whitespace-nowrap"
               >
                 <ShieldCheck className="w-4 h-4" />
-                <span>Reserve 2027 Dates</span>
+                <span>Reserve 2027</span>
               </button>
             </div>
 
-            {/* Mobile Menu Button */}
-            <div className="flex md:hidden items-center gap-2">
+            {/* Mobile / Tablet Menu Button */}
+            <div className="flex lg:hidden items-center gap-2">
               <button
                 onClick={() => handleNavClick('contact')}
-                className="bg-[#D97746] text-white text-[11px] font-semibold uppercase px-3 py-1.5 rounded"
+                className="bg-[#D97746] text-white text-[11px] font-semibold uppercase px-3 py-1.5 rounded whitespace-nowrap"
               >
                 Reserve
               </button>
@@ -142,18 +147,21 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
 
         {/* Mobile Navigation Dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-[#11191F] border-b border-[#263B46] px-4 pt-2 pb-6 space-y-2 animate-fadeIn">
+          <div className="lg:hidden bg-[#11191F] border-b border-[#263B46] px-4 pt-2 pb-6 space-y-2 animate-fadeIn">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`block w-full text-left px-4 py-3 rounded text-base font-medium transition ${
+                className={`w-full text-left px-4 py-3 rounded text-base font-medium transition flex items-center justify-between ${
                   currentPage === item.id
                     ? 'bg-[#1B2A32] text-[#D97746] font-semibold'
                     : 'text-[#F5F2EB]/90 hover:bg-[#1B2A32]'
                 }`}
               >
-                {item.name}
+                <span>{item.name}</span>
+                {item.id === 'fly-shop' && (
+                  <ShoppingBag className="w-4 h-4 text-[#D97746]" />
+                )}
               </button>
             ))}
             <div className="pt-4 border-t border-[#263B46] space-y-2">

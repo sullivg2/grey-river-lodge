@@ -8,6 +8,7 @@ export const PAGE_PATHS: Record<PageId, string> = {
   accommodations: '/accommodations',
   rates: '/rates',
   'getting-here': '/getting-here',
+  'fly-shop': '/fly-shop',
   contact: '/contact',
 };
 
@@ -84,6 +85,20 @@ export const PAGE_METADATA: Record<
       'Grey River travel logistics',
     ],
   },
+  'fly-shop': {
+    title: 'Outfitter Fly Shop | Grey River Lodge Gear & Tackle',
+    description:
+      'River-tested fly rods, reels, lines, and custom dry fly selections for Atlantic salmon. Option for home delivery or pre-staged in your lodge cabin upon arrival.',
+    image: `${SITE_URL}/lodge-view.JPG`,
+    keywords: [
+      'Grey River Lodge fly shop',
+      'Atlantic salmon flies Newfoundland',
+      'NAM fly rods',
+      'Einarsson reels',
+      'salmon fishing tackle',
+      'lodge gear staging',
+    ],
+  },
   contact: {
     title: 'Book Your Grey River Trip | Contact Grey River Lodge',
     description:
@@ -104,6 +119,8 @@ const ROUTE_TO_PAGE: Record<string, PageId> = {
   '/accommodations': 'accommodations',
   '/rates': 'rates',
   '/getting-here': 'getting-here',
+  '/fly-shop': 'fly-shop',
+  '/shop': 'fly-shop',
   '/contact': 'contact',
 };
 

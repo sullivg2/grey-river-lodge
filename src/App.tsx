@@ -7,6 +7,7 @@ import { TheFisheryPage } from './pages/TheFisheryPage';
 import { AccommodationsPage } from './pages/AccommodationsPage';
 import { RatesPage } from './pages/RatesPage';
 import { GettingHerePage } from './pages/GettingHerePage';
+import { FlyShopPage } from './pages/FlyShopPage';
 import { ContactPage } from './pages/ContactPage';
 import { applyPageMetadata, PAGE_PATHS, resolvePageFromLocation } from './seo';
 
@@ -39,7 +40,7 @@ export default function App() {
     setCurrentPage(page);
     applyPageMetadata(page);
 
-    const targetPath = PAGE_PATHS[page];
+    const targetPath = PAGE_PATHS[page] || `/${page}`;
     const currentPath = window.location.pathname;
     if (currentPath !== targetPath) {
       window.history.pushState({}, '', targetPath);
@@ -79,6 +80,7 @@ export default function App() {
           />
         )}
         {currentPage === 'getting-here' && <GettingHerePage onNavigate={handleNavigate} />}
+        {currentPage === 'fly-shop' && <FlyShopPage onNavigate={handleNavigate} />}
         {currentPage === 'contact' && <ContactPage initialData={prefilledBooking} />}
       </main>
 

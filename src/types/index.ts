@@ -1,4 +1,4 @@
-export type PageId = 'home' | 'the-fishery' | 'accommodations' | 'rates' | 'getting-here' | 'contact';
+export type PageId = 'home' | 'the-fishery' | 'accommodations' | 'rates' | 'getting-here' | 'fly-shop' | 'contact';
 
 export interface RiverPool {
   id: string;
