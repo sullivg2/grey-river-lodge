@@ -7,7 +7,8 @@ import { PhotoGalleryShowcase } from '../components/PhotoGalleryShowcase';
 import { 
   ShieldCheck, 
   Sparkles, 
-  Compass 
+  Compass,
+  ExternalLink
 } from 'lucide-react';
 
 interface TheFisheryPageProps {
@@ -140,59 +141,225 @@ export const TheFisheryPage: React.FC<TheFisheryPageProps> = ({ onNavigate }) =>
           />
         </div>
 
-        {/* Recommended Tackle & Gear Specs */}
-        <div className="bg-[#11191F] text-white p-8 sm:p-12 rounded-xl shadow-xl space-y-8 border border-[#263B46]">
+        {/* Recommended Tackle & Gear Specs (Rods, Reels, Lines & Rigging) */}
+        <div className="bg-[#11191F] text-white p-8 sm:p-12 rounded-2xl shadow-xl space-y-8 border border-[#263B46]">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[#263B46] pb-6">
             <div>
               <span className="text-[10px] font-mono uppercase tracking-widest text-[#D97746] font-bold">
-                Expedition Standard
+                Expedition Rigging & Tackle Standard
               </span>
               <h2 className="text-2xl sm:text-3xl font-serif text-white">
-                Recommended Tackle & Fly Selection
+                Recommended Rods, Reels & Line Systems
               </h2>
             </div>
-            <span className="text-xs bg-[#2D4A3E] text-[#F5F2EB] px-3 py-1 rounded-full font-semibold">
-              Single Barbless Only
+            <span className="text-xs bg-[#2D4A3E] text-[#F5F2EB] px-3.5 py-1.5 rounded-full font-semibold font-mono flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              Single Barbless Mandatory
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm text-[#F5F2EB]/80 leading-relaxed">
-            <div className="space-y-3 bg-[#1B2A32] p-6 rounded-lg border border-[#263B46]">
-              <h4 className="font-bold text-[#D97746] uppercase tracking-wider text-xs flex items-center gap-1.5">
-                <Compass className="w-4 h-4" />
-                Rods & Lines
-              </h4>
-              <ul className="space-y-2 text-xs text-[#F5F2EB]/90">
-                <li>• <strong>9'0" 7wt or 8wt Single Hand Rods</strong> (Prime dry fly setup)</li>
-                <li>• <strong>11'6" – 12'6" 6/7wt Switch Rods</strong> (For canyon pool swinging)</li>
-                <li>• <strong>Weight-Forward Floating Lines</strong> (WF7F / WF8F)</li>
-                <li>• <strong>9–12ft Tapered Leaders</strong> (8lb – 12lb test monofilament & fluorocarbon)</li>
-              </ul>
+          {/* 4-Card Technical Gear Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-sm text-[#F5F2EB]/80 leading-relaxed">
+            
+            {/* Card 1: Single Hand Dry Fly */}
+            <div className="bg-[#18232A] rounded-xl border border-[#263B46] overflow-hidden flex flex-col justify-between shadow-sm">
+              <div>
+                <div className="relative h-44 w-full overflow-hidden bg-[#11191F]">
+                  <img 
+                    src="/renplus.jpg" 
+                    alt="NAM Ren Single Hand Fly Rod" 
+                    className="w-full h-full object-cover object-center opacity-90 hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#18232A] via-transparent to-black/20" />
+                  <span className="absolute top-3 right-3 text-[10px] font-mono bg-[#11191F]/90 text-slate-300 px-2 py-0.5 rounded border border-[#263B46] backdrop-blur-xs">
+                    Primary Rig
+                  </span>
+                </div>
+
+                <div className="p-5 space-y-3">
+                  <h4 className="font-bold text-[#D97746] uppercase tracking-wider text-xs flex items-center gap-1.5 font-mono">
+                    <Compass className="w-4 h-4" />
+                    Single-Hand Dry Fly
+                  </h4>
+                  <p className="text-xs text-slate-300">
+                    Engineered for wind-resistant Bombers and delicate, drag-free surface presentations.
+                  </p>
+                  <ul className="space-y-1.5 text-xs text-[#F5F2EB]/90 pt-1">
+                    <li>• <strong>Rods:</strong> 9'0" or 9'6" (7wt / 8wt)</li>
+                    <li>• <strong>Action:</strong> Fast / Medium-Fast Recovery</li>
+                    <li>• <strong>Leaders:</strong> 10–14ft (8lb – 12lb)</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="p-5 pt-0">
+                <div className="pt-3 border-t border-[#263B46]">
+                  <a 
+                    href="https://namproducts.com/collections/all-ren-rods" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-1.5 text-[11px] text-[#D97746] hover:text-[#f3986a] font-mono transition"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 shrink-0" />
+                    <span>NAM Ren Single Hand</span>
+                    <ExternalLink className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity" />
+                  </a>
+                </div>
+              </div>
             </div>
 
-            <div className="space-y-3 bg-[#1B2A32] p-6 rounded-lg border border-[#263B46]">
-              <h4 className="font-bold text-[#D97746] uppercase tracking-wider text-xs flex items-center gap-1.5">
-                <Sparkles className="w-4 h-4" />
-                Proven Fly Patterns
-              </h4>
-              <ul className="space-y-2 text-xs text-[#F5F2EB]/90">
-                <li>• <strong>Dry:</strong> Green, White, and Brown Bombers (Sizes 2–8)</li>
-                <li>• <strong>Wet:</strong> Blue Charm, Undertaker, Green Butt Cascade, Silver Doctor</li>
-                <li>• <strong>Trout:</strong> Muddler Minnows, Woolly Buggers, Carter Bugs</li>
-                <li>• <strong>Barbless Requirement:</strong> Single barbless hooks mandatory by NL law</li>
-              </ul>
+            {/* Card 2: Two-Hand Spey */}
+            <div className="bg-[#18232A] rounded-xl border border-[#263B46] overflow-hidden flex flex-col justify-between shadow-sm">
+              <div>
+                <div className="relative h-44 w-full overflow-hidden bg-[#11191F]">
+                  <img 
+                    src="/rendh.jpg" 
+                    alt="NAM Ren Two-Handed Spey Rod" 
+                    className="w-full h-full object-cover object-center opacity-90 hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#18232A] via-transparent to-black/20" />
+                  <span className="absolute top-3 right-3 text-[10px] font-mono bg-[#11191F]/90 text-slate-300 px-2 py-0.5 rounded border border-[#263B46] backdrop-blur-xs">
+                    Canyon Pools
+                  </span>
+                </div>
+
+                <div className="p-5 space-y-3">
+                  <h4 className="font-bold text-[#D97746] uppercase tracking-wider text-xs flex items-center gap-1.5 font-mono">
+                    <Compass className="w-4 h-4" />
+                    Two-Hand Spey
+                  </h4>
+                  <p className="text-xs text-slate-300">
+                    Ideal for swinging classic wet flies through deep tailouts with tight backcast clearance.
+                  </p>
+                  <ul className="space-y-1.5 text-xs text-[#F5F2EB]/90 pt-1">
+                    <li>• <strong>Rods:</strong> 12'4" – 13'8" (6wt / 7wt / 8wt)</li>
+                    <li>• <strong>Design:</strong> 5-Piece Expedition Travel</li>
+                    <li>• <strong>Heads:</strong> Scandi 390gr–520gr Floating</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="p-5 pt-0">
+                <div className="pt-3 border-t border-[#263B46]">
+                  <a 
+                    href="https://namproducts.com/collections/two-handed-ren-5-pcs" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-1.5 text-[11px] text-[#D97746] hover:text-[#f3986a] font-mono transition"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 shrink-0" />
+                    <span>NAM Ren 5-Piece DH</span>
+                    <ExternalLink className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity" />
+                  </a>
+                </div>
+              </div>
             </div>
+
+            {/* Card 3: Einarsson Reels */}
+            <div className="bg-[#18232A] rounded-xl border border-[#263B46] overflow-hidden flex flex-col justify-between shadow-sm">
+              <div>
+                <div className="relative h-44 w-full overflow-hidden bg-[#11191F]">
+                  <img 
+                    src="/einarsson.jpg" 
+                    alt="Einarsson Fly Reel Drag Architecture" 
+                    className="w-full h-full object-cover object-center opacity-90 hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#18232A] via-transparent to-black/20" />
+                  <span className="absolute top-3 right-3 text-[10px] font-mono bg-[#11191F]/90 text-slate-300 px-2 py-0.5 rounded border border-[#263B46] backdrop-blur-xs">
+                    Zero Inertia
+                  </span>
+                </div>
+
+                <div className="p-5 space-y-3">
+                  <h4 className="font-bold text-[#D97746] uppercase tracking-wider text-xs flex items-center gap-1.5 font-mono">
+                    <Compass className="w-4 h-4" />
+                    Fly Reels & Drag
+                  </h4>
+                  <p className="text-xs text-slate-300">
+                    Smooth start-up inertia and shock-absorbing brake systems to protect fine tippets.
+                  </p>
+                  <ul className="space-y-1.5 text-xs text-[#F5F2EB]/90 pt-1">
+                    <li>• <strong>Brake:</strong> Watertight Sealed Drag</li>
+                    <li>• <strong>Arbor:</strong> Large Arbor Fast Retrieval</li>
+                    <li>• <strong>Backing:</strong> 150–200m (20–30lb Dacron)</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="p-5 pt-0">
+                <div className="pt-3 border-t border-[#263B46]">
+                  <a 
+                    href="https://namproducts.com/collections/einarsson" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-1.5 text-[11px] text-[#D97746] hover:text-[#f3986a] font-mono transition"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 shrink-0" />
+                    <span>Einarsson Fly Reels</span>
+                    <ExternalLink className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 4: Hazumi Lines */}
+            <div className="bg-[#18232A] rounded-xl border border-[#263B46] overflow-hidden flex flex-col justify-between shadow-sm">
+              <div>
+                <div className="relative h-44 w-full overflow-hidden bg-[#11191F]">
+                  <img 
+                    src="/hazumi.jpg" 
+                    alt="Hazumi Line Company Fly Lines" 
+                    className="w-full h-full object-cover object-center opacity-90 hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#18232A] via-transparent to-black/20" />
+                  <span className="absolute top-3 right-3 text-[10px] font-mono bg-[#11191F]/90 text-slate-300 px-2 py-0.5 rounded border border-[#263B46] backdrop-blur-xs">
+                    Precision Tapers
+                  </span>
+                </div>
+
+                <div className="p-5 space-y-3">
+                  <h4 className="font-bold text-[#D97746] uppercase tracking-wider text-xs flex items-center gap-1.5 font-mono">
+                    <Compass className="w-4 h-4" />
+                    Line Architecture
+                  </h4>
+                  <p className="text-xs text-slate-300">
+                    High-floating tapers designed for turnover in winds and effortless line mending.
+                  </p>
+                  <ul className="space-y-1.5 text-xs text-[#F5F2EB]/90 pt-1">
+                    <li>• <strong>Single Hand:</strong> Aggressive WF Floating</li>
+                    <li>• <strong>Spey Heads:</strong> Scandi Floating & Density</li>
+                    <li>• <strong>Core:</strong> Low-Stretch Coldwater Braided</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="p-5 pt-0">
+                <div className="pt-3 border-t border-[#263B46]">
+                  <a 
+                    href="https://namproducts.com/pages/hazumi-line-company" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-1.5 text-[11px] text-[#D97746] hover:text-[#f3986a] font-mono transition"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 shrink-0" />
+                    <span>Hazumi Line Co.</span>
+                    <ExternalLink className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
           </div>
 
-          {/* Conservation Protocol */}
-          <div className="bg-[#0B1014] p-6 rounded-lg border border-[#263B46] flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          {/* Conservation Protocol & Booking Action */}
+          <div className="bg-[#0B1014] p-6 rounded-xl border border-[#263B46] flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div className="space-y-1">
               <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4" />
                 River Conservation & Catch & Release Ethics
               </span>
               <p className="text-xs text-[#F5F2EB]/70 max-w-2xl">
-                All Atlantic salmon are kept in the water for gentle unhooking with wet hands. Rubber mesh nets and single barbless hooks ensure 100% healthy fish release.
+                All Atlantic salmon are kept in the water for gentle unhooking with wet hands. Rubber mesh nets and single barbless hooks ensure 100% healthy fish release across all Grey River pools.
               </p>
             </div>
             <button
