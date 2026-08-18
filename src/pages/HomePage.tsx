@@ -8,16 +8,10 @@ import {
   ArrowRight, 
   Compass, 
   Fish, 
-  ShieldCheck, 
   Waves, 
-  Sparkles, 
   Home, 
-  Plane, 
   Star, 
-  Calendar,
-  CheckCircle2,
-  ChevronRight,
-  Anchor
+  CheckCircle2
 } from 'lucide-react';
 
 interface HomePageProps {
@@ -28,25 +22,25 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   return (
     <div className="space-y-0">
       
-      {/* 1. HERO SECTION */}
+      {/* 1. HERO SECTION - Real Aerial Lodge Background */}
       <section className="relative bg-[#11191F] text-white min-h-[90vh] flex items-center justify-center text-center px-4 overflow-hidden">
         
-        {/* Background Image / Overlay with Gradient */}
+        {/* Real Aerial Compound Background */}
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity scale-105 transform transition-transform duration-1000"
+          className="absolute inset-0 bg-cover bg-center opacity-45 scale-105 transform transition-transform duration-1000"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=2000&q=80')`
+            backgroundImage: `url('/rover-drone.JPG')`
           }}
         />
         
-        {/* Deep Fjord Dark Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#11191F] via-[#11191F]/70 to-[#11191F]/90" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#11191F]/40 to-[#11191F]" />
+        {/* Deep Fjord Dark Gradient Overlays for High-Contrast Readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#11191F] via-[#11191F]/70 to-[#11191F]/85" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#11191F]/50 to-[#11191F]" />
 
         {/* Content Container */}
         <div className="max-w-4xl mx-auto space-y-6 z-10 py-24 relative">
           
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#D97746] font-semibold bg-[#D97746]/10 px-4 py-2 rounded-full border border-[#D97746]/20 backdrop-blur-sm animate-fadeIn">
+          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#D97746] font-semibold bg-[#11191F]/80 px-4 py-2 rounded-full border border-[#D97746]/30 backdrop-blur-sm animate-fadeIn">
             <Compass className="w-3.5 h-3.5 text-[#D97746]" />
             <span>The Most Remote Salmon Lodge in Newfoundland • Helicopter Access Only</span>
           </div>
@@ -56,7 +50,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             <span className="italic font-normal text-[#F5F2EB]">Unmatched Salmon.</span>
           </h1>
 
-          <p className="text-base sm:text-xl text-[#F5F2EB]/80 max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="text-base sm:text-xl text-[#F5F2EB]/85 max-w-2xl mx-auto font-light leading-relaxed">
             Accessible exclusively by helicopter. Experience Newfoundland's most remote Atlantic salmon pools, authentic timber lodge comfort, and true maritime solitude on the island's wildest river.
           </p>
 
@@ -72,7 +66,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
             <button
               onClick={() => onNavigate('the-fishery')}
-              className="w-full sm:w-auto border border-[#F5F2EB]/30 hover:border-[#F5F2EB] bg-[#1B2A32]/40 backdrop-blur hover:bg-[#1B2A32]/80 text-[#F5F2EB] text-xs sm:text-sm font-semibold uppercase tracking-wider px-8 py-4 rounded transition cursor-pointer flex items-center justify-center gap-2"
+              className="w-full sm:w-auto border border-[#F5F2EB]/30 hover:border-[#F5F2EB] bg-[#1B2A32]/50 backdrop-blur hover:bg-[#1B2A32]/80 text-[#F5F2EB] text-xs sm:text-sm font-semibold uppercase tracking-wider px-8 py-4 rounded transition cursor-pointer flex items-center justify-center gap-2"
             >
               <Waves className="w-4 h-4 text-[#D97746]" />
               <span>Explore The Fishery</span>
@@ -192,7 +186,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 3.5 AUTHENTIC LODGE PHOTOGRAPHY SHOWCASE */}
+      {/* 3.5 AUTHENTIC PHOTOGRAPHY SHOWCASE */}
       <section className="py-20 bg-[#EDE8DE] border-y border-slate-300/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <PhotoGalleryShowcase 
