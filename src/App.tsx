@@ -8,9 +8,10 @@ import { AccommodationsPage } from './pages/AccommodationsPage';
 import { RatesPage } from './pages/RatesPage';
 import { GettingHerePage } from './pages/GettingHerePage';
 import { ContactPage } from './pages/ContactPage';
+import { applyPageMetadata, PAGE_PATHS, resolvePageFromLocation } from './seo';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<PageId>('home');
+  const [currentPage, setCurrentPage] = useState<PageId>(() => resolvePageFromLocation());
   const [prefilledBooking, setPrefilledBooking] = useState<{
     partySize?: string;
     seasonWindow?: string;
@@ -18,23 +19,32 @@ export default function App() {
     estimatedCost?: number;
   }>({});
 
-  // Sync with window history / hash if user navigates with browser buttons
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#/', '').replace('#', '') as PageId;
-      if (['home', 'the-fishery', 'accommodations', 'rates', 'getting-here', 'contact'].includes(hash)) {
-        setCurrentPage(hash);
-      }
+    const handleLocationChange = () => {
+      const nextPage = resolvePageFromLocation();
+      setCurrentPage(nextPage);
+      applyPageMetadata(nextPage);
     };
 
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    handleLocationChange();
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
+    };
   }, []);
 
   const handleNavigate = (page: PageId) => {
     setCurrentPage(page);
-    window.location.hash = `#/${page === 'home' ? '' : page}`;
+    applyPageMetadata(page);
+
+    const targetPath = PAGE_PATHS[page];
+    const currentPath = window.location.pathname;
+    if (currentPath !== targetPath) {
+      window.history.pushState({}, '', targetPath);
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
