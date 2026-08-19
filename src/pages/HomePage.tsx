@@ -27,7 +27,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         
         {/* Real Aerial Compound Background */}
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-45 scale-105 transform transition-transform duration-1000"
+          className="absolute inset-0 bg-cover bg-center opacity-75 scale-105 transform transition-transform duration-1000"
           style={{
             backgroundImage: `url('/rover-drone.JPG')`
           }}

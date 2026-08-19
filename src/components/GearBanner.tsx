@@ -1,5 +1,6 @@
 import React from 'react';
 import { PageId } from '../types';
+import { ArrowRight, ShoppingBag } from 'lucide-react';
 
 interface GearBannerProps {
   className?: string;
@@ -12,13 +13,15 @@ interface TackleCardItem {
   description: string;
   imageSrc: string;
   alt: string;
+  targetPage: PageId;
 }
 
 export const GearBanner: React.FC<GearBannerProps> = ({ className = '', onNavigate }) => {
-  const handleFisheryClick = (e: React.MouseEvent) => {
+  const handleNavigation = (page: PageId) => (e: React.MouseEvent) => {
     if (onNavigate) {
       e.preventDefault();
-      onNavigate('the-fishery');
+      onNavigate(page);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -27,57 +30,57 @@ export const GearBanner: React.FC<GearBannerProps> = ({ className = '', onNaviga
       title: 'NAM Single & Double-Hand Rods',
       badge: 'BLANKS',
       description:
-        'Ultra-responsive carbon and graphene actions dialed for dry fly presentations and canyon spey deliveries.',
-      // Replace with your actual image filename from /public or /src/assets
-      imageSrc: '/nam-rod-thumbnail.jpg',
+        'Ultra-responsive carbon and graphene actions dialed for delicate dry fly presentations and high-gradient canyon spey deliveries.',
+      imageSrc: '/rendh.jpg', // Replace with transparent PNG or 16:9 lifestyle asset
       alt: 'NAM Fly Rods',
+      targetPage: 'fly-shop',
     },
     {
       title: 'NAM Precision Fly Lines',
       badge: 'TAPERS',
       description:
-        'Tuned floating tapers, shooting heads, and running lines crafted specifically for effortless turnover and long swings.',
-      // Replace with your actual image filename from /public or /src/assets
-      imageSrc: '/nam-line-thumbnail.jpg',
+        'Tuned floating tapers, shooting heads, and running lines crafted specifically for effortless turnover and heavy bomber deliveries.',
+      imageSrc: '/hazumi.jpg',
       alt: 'NAM Precision Fly Lines',
+      targetPage: 'fly-shop',
     },
     {
       title: 'Einarsson Sealed Drag Reels',
       badge: 'STOPPING POWER',
       description:
-        'Icelandic precision engineering with silky smooth startup inertia to protect fine tippets against ocean-fresh Atlantic salmon runs.',
-      // Replace with your actual image filename from /public or /src/assets
-      imageSrc: '/einarsson-reel-thumbnail.jpg',
+        'Icelandic precision engineering with near-zero startup inertia to protect fine tippets against ocean-fresh Atlantic salmon runs.',
+      imageSrc: '/einarsson.jpg',
       alt: 'Einarsson Fly Reel',
+      targetPage: 'fly-shop',
     },
   ];
 
   return (
-    <section className={`w-full bg-[#11191F] text-white py-16 sm:py-24 border-y border-slate-800/80 relative overflow-hidden ${className}`}>
-      {/* Ambient Background Glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1B2A32]/40 via-transparent to-transparent pointer-events-none" />
-      <div className="absolute -right-32 -top-32 w-96 h-96 bg-[#D97746]/5 rounded-full blur-3xl pointer-events-none" />
+    <section className={`w-full bg-[#11191F] text-white py-16 sm:py-24 border-y border-[#1B2A32] relative overflow-hidden ${className}`}>
+      {/* Ambient Lighting */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0B1014]/60 via-transparent to-[#0B1014]/80 pointer-events-none" />
+      <div className="absolute -right-32 top-1/4 w-96 h-96 bg-[#D97746]/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* LEFT COLUMN: Context & Brand Story */}
-          <div className="lg:col-span-7 space-y-6">
+          {/* LEFT COLUMN: Narrative & Partnership Branding */}
+          <div className="lg:col-span-6 space-y-6">
             
             {/* Eyebrow */}
-            <div className="inline-flex items-center gap-3">
+            <div className="inline-flex items-center gap-2.5">
               <span className="h-px w-6 bg-[#D97746]" aria-hidden="true" />
               <span className="text-xs font-mono tracking-widest text-[#D97746] uppercase font-bold">
                 THE RIVER ARSENAL • TACKLE PARTNERSHIP
               </span>
             </div>
 
-            {/* NAM LOGO ONLY */}
+            {/* NAM Partner Logo Badge */}
             <div className="flex items-center pt-1">
-              <div className="px-4 py-2 rounded-lg bg-[#18232A] border border-slate-700/80 hover:border-[#D97746]/50 shadow-md transition-all duration-300">
+              <div className="px-4 py-2 rounded-lg bg-[#18232A] border border-[#263B46] hover:border-[#D97746]/50 shadow-md transition-all duration-300">
                 <img 
                   src="/nam-products_logo_CMYK_white.jpg" 
-                  alt="NAM Products" 
+                  alt="NAM Products Logo" 
                   className="h-8 w-auto max-w-[140px] object-contain"
                 />
               </div>
@@ -88,66 +91,83 @@ export const GearBanner: React.FC<GearBannerProps> = ({ className = '', onNaviga
               Equipped by NAM Products
             </h2>
 
-            {/* Subhead / Lead */}
+            {/* Subhead */}
             <p className="text-base sm:text-lg text-[#F5F2EB]/80 font-light leading-relaxed">
-              Precision Scandinavian Blanks & Tapers Meet South Coast Salmon.
+              Precision Scandinavian Blanks & Tapers Meet South Coast Atlantic Salmon.
             </p>
 
-            {/* Body Copy */}
+            {/* Narrative Body Copy */}
             <div className="space-y-4 text-sm sm:text-base text-[#F5F2EB]/70 leading-relaxed font-light">
               <p>
-                Guests enjoy exclusive on-water access to an arsenal of NAM single-hand and double-handed spey rods, custom-tapered NAM fly lines, and Icelandic Einarsson sealed-drag reels. Every outfit is meticulously matched to deliver delicate presentations in crystal glides or launch heavy bombers into canyon winds.
+                Guests enjoy exclusive lodge access to an arsenal of NAM single-hand and double-handed spey rods, custom-tapered NAM fly lines, and Icelandic Einarsson sealed-drag reels. Every outfit is tuned for Grey River’s pocket water, holding pools, and ocean-fresh runs.
               </p>
               <p>
-                Leave cumbersome rod travel tubes at home or take this opportunity to test-drive cutting-edge tackle tuned specifically for Grey River’s holding pools, steep chutes, and ocean-fresh Atlantic salmon.
+                Leave cumbersome rod travel tubes at home or explore our curated shop to test-drive cutting-edge tackle matched to canyon winds and crystal glides.
               </p>
             </div>
 
-            {/* Action Link */}
-            <div className="pt-3">
-              <a 
-                href="#the-fishery" 
-                onClick={handleFisheryClick}
+            {/* Action CTAs */}
+            <div className="pt-2 flex flex-wrap items-center gap-6">
+              <button 
+                onClick={handleNavigation('the-fishery')}
                 className="group inline-flex items-center gap-2 text-sm sm:text-base font-medium text-[#D97746] hover:text-[#e58a5b] transition-colors duration-200 cursor-pointer"
               >
                 <span>Explore Tackle & Pool Specs</span>
-                <span className="transform transition-transform duration-200 group-hover:translate-x-1.5" aria-hidden="true">→</span>
-              </a>
+                <ArrowRight className="w-4 h-4 transform transition-transform duration-200 group-hover:translate-x-1.5" />
+              </button>
+
+              <button 
+                onClick={handleNavigation('fly-shop')}
+                className="group inline-flex items-center gap-2 text-sm sm:text-base font-medium text-[#F5F2EB]/80 hover:text-white transition-colors duration-200 cursor-pointer"
+              >
+                <ShoppingBag className="w-4 h-4 text-[#D97746]" />
+                <span>Browse Full Fly Shop</span>
+              </button>
             </div>
 
           </div>
 
-          {/* RIGHT COLUMN: 3 Feature Cards with Product Images */}
-          <div className="lg:col-span-5 space-y-4">
+          {/* RIGHT COLUMN: Tackle Showcase Cards with Widescreen Framing */}
+          <div className="lg:col-span-6 space-y-4">
             {tackleCards.map((card, idx) => (
-              <div 
+              <button
                 key={idx}
-                className="group bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 rounded-lg p-4 sm:p-5 transition-all duration-300 hover:border-slate-600 shadow-lg flex items-center gap-4 sm:gap-5"
+                onClick={handleNavigation(card.targetPage)}
+                className="w-full text-left group bg-[#18232A]/90 hover:bg-[#1E2E38] border border-[#263B46] hover:border-[#D97746]/60 rounded-xl p-4 transition-all duration-300 shadow-xl flex flex-col sm:flex-row items-center gap-4 cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#D97746]"
+                aria-label={`View ${card.title} in the Fly Shop`}
               >
-                {/* Product Thumbnail Container */}
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-md bg-[#0F161C] border border-slate-700/80 overflow-hidden shrink-0 flex items-center justify-center p-1.5">
+                {/* 16:9 Widescreen Hardware Container */}
+                <div className="w-full sm:w-36 h-28 rounded-lg bg-[#0F161C] border border-[#263B46]/80 overflow-hidden shrink-0 flex items-center justify-center p-2 relative">
                   <img 
                     src={card.imageSrc} 
                     alt={card.alt} 
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-contain transform transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
                 </div>
 
-                {/* Card Text Content */}
-                <div className="flex-1 min-w-0">
+                {/* Card Details */}
+                <div className="flex-1 min-w-0 w-full">
                   <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <h3 className="font-serif text-base sm:text-lg text-white font-medium truncate">
+                    <h3 className="font-serif text-base sm:text-lg text-white font-medium group-hover:text-[#D97746] transition-colors duration-200">
                       {card.title}
                     </h3>
-                    <span className="text-[9px] sm:text-[10px] font-mono font-bold tracking-wider px-2 py-0.5 rounded bg-[#D97746]/10 text-[#D97746] border border-[#D97746]/20 uppercase shrink-0">
+                    <span className="text-[9px] font-mono font-bold tracking-wider px-2 py-0.5 rounded bg-[#D97746]/10 text-[#D97746] border border-[#D97746]/20 uppercase shrink-0">
                       {card.badge}
                     </span>
                   </div>
-                  <p className="text-xs sm:text-sm text-[#F5F2EB]/70 leading-relaxed line-clamp-2 sm:line-clamp-none font-light">
+                  <p className="text-xs sm:text-sm text-[#F5F2EB]/70 leading-relaxed font-light">
                     {card.description}
                   </p>
+                  
+                  {/* Contextual CTA */}
+                  <div className="mt-2 flex items-center gap-1.5 text-[11px] font-mono font-medium text-[#D97746] opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <span>VIEW IN FLY SHOP</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </div>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
 
