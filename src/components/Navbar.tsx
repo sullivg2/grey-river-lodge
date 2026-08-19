@@ -19,7 +19,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Strict single-line nav items to prevent multiline wrapping
+  // Strict single-line navigation labels
   const navItems: { id: PageId; name: string }[] = [
     { id: 'home', name: 'Home' },
     { id: 'the-fishery', name: 'Fishery' },
@@ -78,29 +78,21 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-24 gap-4">
             
-            {/* Brand Logo - Integrated Vector Fly + Typographic Lockup */}
+            {/* Brand Logo - Standalone Graphic Lockup */}
             <button
               onClick={() => handleNavClick('home')}
-              className="flex items-center gap-3 sm:gap-3.5 group cursor-pointer focus:outline-none shrink-0 py-2"
+              className="flex items-center group cursor-pointer focus:outline-none shrink-0 py-2"
               aria-label="Grey River Lodge Home"
             >
               <img
-                src="/Grey River Lodge Fly logo.svg"
-                alt="Grey River Salmon Fly Logo"
-                className="h-10 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+                src="/Grey River Lodge logo.png"
+                alt="Grey River Lodge"
+                className="h-16 sm:h-18 md:h-20 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
               />
-              <div className="flex flex-col text-left">
-                <span className="text-lg sm:text-xl md:text-2xl font-serif font-bold tracking-wider text-[#F5F2EB] uppercase leading-none">
-                  Grey River Lodge
-                </span>
-                <span className="text-[9px] sm:text-[10px] md:text-[10.5px] tracking-[0.20em] text-[#D97746] font-medium uppercase mt-1 whitespace-nowrap">
-                  Newfoundland
-                </span>
-              </div>
             </button>
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6 shrink-0">
+            <nav className="hidden lg:flex items-center space-x-5 xl:space-x-7 shrink-0">
               {navItems.map((item) => (
                 <button
                   key={item.id}
@@ -119,7 +111,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
               ))}
             </nav>
 
-            {/* Primary Action Button */}
+            {/* Primary Action Button (White-Glove Intake Trigger) */}
             <div className="hidden lg:flex items-center shrink-0">
               <button
                 onClick={() => handleNavClick('rates')}
