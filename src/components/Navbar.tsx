@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PageId } from '../types';
-import { Menu, X, Compass, PhoneCall, Waves, ShieldCheck, ShoppingBag } from 'lucide-react';
+import { Menu, X, PhoneCall, Waves, ShieldCheck, ShoppingBag } from 'lucide-react';
 
 interface NavbarProps {
   currentPage: PageId;
@@ -19,7 +19,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Tightened label names to prevent awkward 2-line wraps
+  // Strict single-line nav items to prevent multiline wrapping
   const navItems: { id: PageId; name: string }[] = [
     { id: 'home', name: 'Home' },
     { id: 'the-fishery', name: 'Fishery' },
@@ -76,26 +76,31 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
         } text-white`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 gap-4">
+          <div className="flex items-center justify-between h-24 gap-4">
             
-            {/* Brand Logo */}
+            {/* Brand Logo - Integrated Vector Fly + Typographic Lockup */}
             <button
               onClick={() => handleNavClick('home')}
-              className="flex flex-col text-left group cursor-pointer focus:outline-none shrink-0"
+              className="flex items-center gap-3 sm:gap-3.5 group cursor-pointer focus:outline-none shrink-0 py-2"
+              aria-label="Grey River Lodge Home"
             >
-              <div className="flex items-center gap-2">
-                <Compass className="w-6 h-6 text-[#D97746] transition-transform group-hover:rotate-45" />
-                <span className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-white">
-                  GREY RIVER
+              <img
+                src="/Grey River Lodge Fly logo.svg"
+                alt="Grey River Salmon Fly Logo"
+                className="h-10 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+              />
+              <div className="flex flex-col text-left">
+                <span className="text-lg sm:text-xl md:text-2xl font-serif font-bold tracking-wider text-[#F5F2EB] uppercase leading-none">
+                  Grey River Lodge
+                </span>
+                <span className="text-[9px] sm:text-[10px] md:text-[10.5px] tracking-[0.20em] text-[#D97746] font-medium uppercase mt-1 whitespace-nowrap">
+                  Newfoundland
                 </span>
               </div>
-              <span className="text-[9px] sm:text-[10px] tracking-[0.2em] text-[#D97746] uppercase font-medium pl-8 hidden sm:block">
-                Most Remote Salmon Lodge • Newfoundland
-              </span>
             </button>
 
-            {/* Desktop Nav with whitespace-nowrap */}
-            <nav className="hidden lg:flex items-center space-x-5 xl:space-x-7 shrink-0">
+            {/* Desktop Navigation Links */}
+            <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6 shrink-0">
               {navItems.map((item) => (
                 <button
                   key={item.id}
@@ -117,7 +122,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             {/* Primary Action Button */}
             <div className="hidden lg:flex items-center shrink-0">
               <button
-                onClick={() => handleNavClick('contact')}
+                onClick={() => handleNavClick('rates')}
                 className="bg-[#D97746] hover:bg-[#C26334] text-white text-xs font-semibold uppercase tracking-wider px-4 py-2.5 xl:px-5 xl:py-3 rounded shadow-md transition-all duration-200 cursor-pointer flex items-center gap-2 whitespace-nowrap"
               >
                 <ShieldCheck className="w-4 h-4" />
@@ -128,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             {/* Mobile / Tablet Menu Button */}
             <div className="flex lg:hidden items-center gap-2">
               <button
-                onClick={() => handleNavClick('contact')}
+                onClick={() => handleNavClick('rates')}
                 className="bg-[#D97746] text-white text-[11px] font-semibold uppercase px-3 py-1.5 rounded whitespace-nowrap"
               >
                 Reserve
@@ -166,7 +171,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             ))}
             <div className="pt-4 border-t border-[#263B46] space-y-2">
               <button
-                onClick={() => handleNavClick('contact')}
+                onClick={() => handleNavClick('rates')}
                 className="w-full bg-[#D97746] hover:bg-[#C26334] text-white text-xs font-semibold uppercase tracking-wider py-3.5 rounded shadow text-center block"
               >
                 Inquire & Reserve 2027 Dates

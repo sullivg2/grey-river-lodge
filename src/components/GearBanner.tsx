@@ -6,6 +6,14 @@ interface GearBannerProps {
   onNavigate?: (page: PageId) => void;
 }
 
+interface TackleCardItem {
+  title: string;
+  badge: string;
+  description: string;
+  imageSrc: string;
+  alt: string;
+}
+
 export const GearBanner: React.FC<GearBannerProps> = ({ className = '', onNavigate }) => {
   const handleFisheryClick = (e: React.MouseEvent) => {
     if (onNavigate) {
@@ -13,6 +21,36 @@ export const GearBanner: React.FC<GearBannerProps> = ({ className = '', onNaviga
       onNavigate('the-fishery');
     }
   };
+
+  const tackleCards: TackleCardItem[] = [
+    {
+      title: 'NAM Single & Double-Hand Rods',
+      badge: 'BLANKS',
+      description:
+        'Ultra-responsive carbon and graphene actions dialed for dry fly presentations and canyon spey deliveries.',
+      // Replace with your actual image filename from /public or /src/assets
+      imageSrc: '/nam-rod-thumbnail.jpg',
+      alt: 'NAM Fly Rods',
+    },
+    {
+      title: 'NAM Precision Fly Lines',
+      badge: 'TAPERS',
+      description:
+        'Tuned floating tapers, shooting heads, and running lines crafted specifically for effortless turnover and long swings.',
+      // Replace with your actual image filename from /public or /src/assets
+      imageSrc: '/nam-line-thumbnail.jpg',
+      alt: 'NAM Precision Fly Lines',
+    },
+    {
+      title: 'Einarsson Sealed Drag Reels',
+      badge: 'STOPPING POWER',
+      description:
+        'Icelandic precision engineering with silky smooth startup inertia to protect fine tippets against ocean-fresh Atlantic salmon runs.',
+      // Replace with your actual image filename from /public or /src/assets
+      imageSrc: '/einarsson-reel-thumbnail.jpg',
+      alt: 'Einarsson Fly Reel',
+    },
+  ];
 
   return (
     <section className={`w-full bg-[#11191F] text-white py-16 sm:py-24 border-y border-slate-800/80 relative overflow-hidden ${className}`}>
@@ -79,54 +117,38 @@ export const GearBanner: React.FC<GearBannerProps> = ({ className = '', onNaviga
 
           </div>
 
-          {/* RIGHT COLUMN: 3 Feature Cards (Rods, Lines, Reels) */}
+          {/* RIGHT COLUMN: 3 Feature Cards with Product Images */}
           <div className="lg:col-span-5 space-y-4">
-            
-            {/* Card 1: Rods */}
-            <div className="bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 rounded-lg p-5 transition-all duration-300 hover:border-slate-600 shadow-lg">
-              <div className="flex items-center justify-between gap-3 mb-2">
-                <h3 className="font-serif text-lg text-white font-medium">
-                  NAM Single & Double-Hand Rods
-                </h3>
-                <span className="text-[10px] font-mono font-bold tracking-wider px-2 py-0.5 rounded bg-[#D97746]/10 text-[#D97746] border border-[#D97746]/20 uppercase">
-                  BLANKS
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-[#F5F2EB]/70 leading-relaxed">
-                Ultra-responsive carbon and graphene actions dialed for dry fly presentations and canyon spey deliveries.
-              </p>
-            </div>
+            {tackleCards.map((card, idx) => (
+              <div 
+                key={idx}
+                className="group bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 rounded-lg p-4 sm:p-5 transition-all duration-300 hover:border-slate-600 shadow-lg flex items-center gap-4 sm:gap-5"
+              >
+                {/* Product Thumbnail Container */}
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-md bg-[#0F161C] border border-slate-700/80 overflow-hidden shrink-0 flex items-center justify-center p-1.5">
+                  <img 
+                    src={card.imageSrc} 
+                    alt={card.alt} 
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
 
-            {/* Card 2: Lines */}
-            <div className="bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 rounded-lg p-5 transition-all duration-300 hover:border-slate-600 shadow-lg">
-              <div className="flex items-center justify-between gap-3 mb-2">
-                <h3 className="font-serif text-lg text-white font-medium">
-                  NAM Precision Fly Lines
-                </h3>
-                <span className="text-[10px] font-mono font-bold tracking-wider px-2 py-0.5 rounded bg-[#D97746]/10 text-[#D97746] border border-[#D97746]/20 uppercase">
-                  TAPERS
-                </span>
+                {/* Card Text Content */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <h3 className="font-serif text-base sm:text-lg text-white font-medium truncate">
+                      {card.title}
+                    </h3>
+                    <span className="text-[9px] sm:text-[10px] font-mono font-bold tracking-wider px-2 py-0.5 rounded bg-[#D97746]/10 text-[#D97746] border border-[#D97746]/20 uppercase shrink-0">
+                      {card.badge}
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#F5F2EB]/70 leading-relaxed line-clamp-2 sm:line-clamp-none font-light">
+                    {card.description}
+                  </p>
+                </div>
               </div>
-              <p className="text-xs sm:text-sm text-[#F5F2EB]/70 leading-relaxed">
-                Tuned floating tapers, shooting heads, and running lines crafted specifically for effortless turnover and long swings.
-              </p>
-            </div>
-
-            {/* Card 3: Reels */}
-            <div className="bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 rounded-lg p-5 transition-all duration-300 hover:border-slate-600 shadow-lg">
-              <div className="flex items-center justify-between gap-3 mb-2">
-                <h3 className="font-serif text-lg text-white font-medium">
-                  Einarsson Sealed Drag Reels
-                </h3>
-                <span className="text-[10px] font-mono font-bold tracking-wider px-2 py-0.5 rounded bg-[#D97746]/10 text-[#D97746] border border-[#D97746]/20 uppercase">
-                  STOPPING POWER
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-[#F5F2EB]/70 leading-relaxed">
-                Icelandic precision engineering with silky smooth startup inertia to protect fine tippets against ocean-fresh Atlantic salmon runs.
-              </p>
-            </div>
-
+            ))}
           </div>
 
         </div>

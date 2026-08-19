@@ -118,7 +118,7 @@ export const FLY_PATTERNS: FlyPattern[] = [
   },
   {
     id: 'blue-charm',
-    name: 'Blue Charm',
+    name: 'Blue Charm (White Wing)',
     category: 'Wet Fly',
     bestSizes: '#6, #8, #10',
     waterCondition: 'Low & Clear',
